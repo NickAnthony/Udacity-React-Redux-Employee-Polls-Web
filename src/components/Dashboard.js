@@ -1,31 +1,33 @@
 import { connect } from "react-redux";
+import QuestionsLayout from "./QuestionsLayout";
 
 const Dashboard = (props) => {
-  console.log(props);
+  const newQuestionIds = props.questionIds.filter(
+    (questionId) =>
+      !props.questions[questionId].optionOne.votes.includes(props.authedUser) &&
+      !props.questions[questionId].optionTwo.votes.includes(props.authedUser)
+  );
+
+  const doneQuestionIds = props.questionIds.filter(
+    (questionId) =>
+      props.questions[questionId].optionOne.votes.includes(props.authedUser) ||
+      props.questions[questionId].optionTwo.votes.includes(props.authedUser)
+  );
+
   return (
     <div>
       <h3>Dashboard</h3>
-      <ul>
-        {props.questionIds.map((questionId) => {
-          console.log(questionId);
-          const question = props.questions[questionId];
-          return (
-            <li key={question.id}>
-              <h2>Would you rather...</h2>
-              <p>{question.optionOne.text}</p>
-              <p>{question.optionTwo.text}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <QuestionsLayout title={"New Questions"} questionIds={newQuestionIds} />
+      <QuestionsLayout title={"Done"} questionIds={doneQuestionIds} />
     </div>
   );
 };
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ questions, authedUser }) => {
   return {
     questionIds: Object.keys(questions),
     questions,
+    authedUser,
   };
 };
 
