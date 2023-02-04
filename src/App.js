@@ -5,6 +5,8 @@ import { useEffect, Fragment } from "react";
 import LoadingBar from "react-redux-loading-bar";
 import Dashboard from "./components/Dashboard";
 import { setAuthedUser } from "./actions/authedUser";
+import { Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav";
 
 function App(props) {
   // Load the initial user and question data asynchronously via useEffect
@@ -16,7 +18,14 @@ function App(props) {
   return (
     <Fragment>
       <LoadingBar />
-      <Dashboard />
+      <div className="container">
+        <Nav />
+        {props.loading === true ? null : (
+          <Routes>
+            <Route path="/" exact element={<Dashboard />} />
+          </Routes>
+        )}
+      </div>
     </Fragment>
   );
 }
