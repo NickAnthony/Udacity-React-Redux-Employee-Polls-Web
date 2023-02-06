@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
 
 const QuestionsLayout = (props) => {
-  console.log(props);
   return (
     <div className="question-layout-container">
       <div className="question-layout-title">{props.title}</div>
@@ -12,6 +11,7 @@ const QuestionsLayout = (props) => {
           return (
             <QuestionCard
               key={question.id}
+              questionId={questionId}
               author={question.author}
               timestamp={question.timestamp}
             />

@@ -128,19 +128,6 @@ let questions = {
   },
 };
 
-export function formatTimestamp(timestamp) {
-  const date = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(timestamp);
-  const time = new Intl.DateTimeFormat("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(timestamp);
-  return `${time} | ${date}`;
-}
-
 function generateUID() {
   return (
     Math.random().toString(36).substring(2, 15) +
