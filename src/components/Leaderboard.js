@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
+import { BsPersonCircle } from "react-icons/bs";
 
 const Leaderboard = (props) => {
   return (
     <div className="container">
       <table>
         <tr className="leaderboard-header">
-          <th>Users</th>
+          <th>User</th>
           <th>Answered</th>
           <th>Created</th>
         </tr>
@@ -14,7 +15,17 @@ const Leaderboard = (props) => {
           const user = props.users[username];
           return (
             <tr key={username}>
-              <td>{user.name}</td>
+              <td className="profile-container">
+                {user.avatarURL ? (
+                  <img src={user.avatarURL} className="profile" />
+                ) : (
+                  <BsPersonCircle className="profile" size={30} />
+                )}
+                <div className="profile-name-container">
+                  <span className="profile-name">{user.name}</span>
+                  <span className="profile-username">{username}</span>
+                </div>
+              </td>
               <td>{user.numAnswers}</td>
               <td>{user.numQuestions}</td>
             </tr>
