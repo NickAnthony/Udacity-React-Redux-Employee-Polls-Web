@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from "../actions/users";
+import { RECEIVE_USERS, ADD_ANSWER_TO_USER } from "../actions/users";
 
 export default function users(state = {}, action) {
   switch (action.type) {
@@ -6,6 +6,22 @@ export default function users(state = {}, action) {
       return {
         ...state,
         ...action.users,
+      };
+    case ADD_ANSWER_TO_USER:
+      // Create a copy of the user object we want to modify.
+      let user = {
+        ...state[action.userId],
+      };
+      // Push in the new answers to the answers part of the object.
+      if (action.voteOption === 1) {
+        user.answers[action.questionId] = "optionOne";
+      } else {
+        user.answers[action.questionId] = "optionTwo";
+      }
+      // Return that new object in replace of the existing object.
+      return {
+        ...state,
+        [action.userId]: user,
       };
     default:
       return state;
