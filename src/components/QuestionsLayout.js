@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { formatTimestamp } from "../utils/_DATA";
+import QuestionCard from "./QuestionCard";
 
 const QuestionsLayout = (props) => {
   console.log(props);
@@ -10,13 +10,11 @@ const QuestionsLayout = (props) => {
         {props.questionIds.map((questionId) => {
           const question = props.questions[questionId];
           return (
-            <div key={question.id} className="question-card-container">
-              <div className="question-card-name">{question.author}</div>
-              <div className="question-card-timestamp">
-                {formatTimestamp(question.timestamp)}
-              </div>
-              <button className="question-card-show-btn">Show</button>
-            </div>
+            <QuestionCard
+              key={question.id}
+              author={question.author}
+              timestamp={question.timestamp}
+            />
           );
         })}
       </div>
