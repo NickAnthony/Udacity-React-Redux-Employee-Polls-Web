@@ -37,7 +37,18 @@
   }
 }
 
-.dashboard-container {
+body {
+  background-color: #eae7dc;
+}
+
+/* Background: #EAE7DC
+ * Dark Brown: #D8C3A5
+ * Dark Grey: #8E8D8A
+ * Light Red: #E98074
+ * Red: #E85A4F
+ */
+
+.container {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -52,8 +63,9 @@
   margin: 10px;
   border-style: solid;
   border-width: 1px;
-  border-color: #b2beb5;
+  border-color: #8e8d8a;
   border-radius: 0.1em;
+  background-color: #f4f3ed;
 }
 
 .question-layout-title {
@@ -63,7 +75,8 @@
   font-weight: bold;
   border-bottom-style: solid;
   border-width: 1px;
-  border-color: #b2beb5;
+  border-color: #8e8d8a;
+  color: #e85a4f;
   padding: 5px;
   width: 100%;
 }
@@ -83,9 +96,9 @@
   flex-direction: column;
   border-style: solid;
   border-width: 1px;
-  border-color: #b2beb5;
+  border-color: #8e8d8a;
   border-radius: 0.2em;
-  box-shadow: 1px 1px 1px #b2beb5;
+  box-shadow: 1px 1px 1px #8e8d8a;
   width: 300px;
   padding: 5px;
   margin: 10px;
@@ -95,14 +108,15 @@
   font-size: calc(4px + 1vmin);
   font-weight: bold;
   padding: 5px;
+  color: #e85a4f;
 }
 .question-card-timestamp {
   display: flex;
   justify-content: center;
-  color: grey;
+  color: #8e8d8a;
   border-bottom-style: solid;
   border-width: 1px;
-  border-color: #b2beb5;
+  border-color: #e98074;
   padding: 5px;
   padding-bottom: 10px;
   width: 100%;

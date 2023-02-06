@@ -18,7 +18,7 @@ function App(props) {
 
   return (
     <Fragment>
-      <LoadingBar />
+      <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
         <Nav />
         {props.loading === true ? null : (

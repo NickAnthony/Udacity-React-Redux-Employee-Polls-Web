@@ -15,7 +15,7 @@ const Dashboard = (props) => {
   );
 
   return (
-    <div className="dashboard-container">
+    <div className="container">
       <QuestionsLayout title={"New Questions"} questionIds={newQuestionIds} />
       <QuestionsLayout title={"Done"} questionIds={doneQuestionIds} />
     </div>
