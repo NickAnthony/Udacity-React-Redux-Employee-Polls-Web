@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import { setAuthedUser } from "./actions/authedUser";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
+import CreatePoll from "./components/CreatePoll";
 
 function App(props) {
   // Load the initial user and question data asynchronously via useEffect
@@ -23,6 +24,7 @@ function App(props) {
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
+            <Route path="/new" exact element={<CreatePoll />} />
           </Routes>
         )}
       </div>
