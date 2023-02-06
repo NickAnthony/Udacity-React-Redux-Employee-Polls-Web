@@ -3,11 +3,12 @@ import { useState } from "react";
 import { addQuestion } from "../actions/questions";
 import { _saveQuestion } from "../utils/_DATA";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { useNavigate } from "react-router";
 
 const CreatePoll = (props) => {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
-  console.log(props);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const CreatePoll = (props) => {
         props.dispatch(addQuestion(formattedQuestion));
         setFirstOption("");
         setSecondOption("");
+        navigate("/");
       })
       .catch((e) => {
         console.group("Save Question Error");
@@ -54,8 +56,6 @@ const CreatePoll = (props) => {
       <h3>Would You Rather</h3>
       <h4>Create Your Own Poll</h4>
       <form className="create-poll-form" onSubmit={handleSubmit}>
-        {/* TODO: Redirect to dashboard when submitted */}
-
         <p>First Option</p>
         <input
           type="text"
