@@ -59,15 +59,17 @@ body {
   align-items: center;
   flex-direction: column;
   width: 80%;
+  min-width: 80vw;
   padding: 5px;
-
   margin: 10px;
+  background-color: #f4f3ed;
+
+  /* Border */
 
   border-style: solid;
   border-width: 1px;
   border-color: #8e8d8a;
   border-radius: 0.1em;
-  background-color: #f4f3ed;
 
   /* Formats the header porperly */
 
