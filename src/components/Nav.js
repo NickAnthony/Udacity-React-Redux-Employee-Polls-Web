@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <nav className="nav-container">
+      {/* TODO: Make the active navigation link highlighed */}
       <Link to="/" className="nav-item">
         Home
       </Link>
