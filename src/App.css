@@ -162,12 +162,17 @@ body {
   color: #8e8d8a;
   text-decoration: none;
   padding: 5px;
+  margin-left: 20px;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #eae7dc;
 }
-.nav-item:hover {
-  color: #e98074;
-}
+.nav-item:hover,
 .is-active {
   color: #e98074;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #e98074;
 }
 
 /* Leaderboard */
