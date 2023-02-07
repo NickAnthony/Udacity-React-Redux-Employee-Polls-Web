@@ -22,7 +22,7 @@ function App(props) {
     <Fragment>
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
-        <Nav />
+        <Nav avatar={props.authedUserAvatarURL} />
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
@@ -36,4 +36,11 @@ function App(props) {
   );
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser, users }) => {
+  console.log(authedUser);
+  return {
+    authedUserAvatarURL: authedUser ? users[authedUser].avatarURL : null,
+  };
+};
+
+export default connect(mapStateToProps)(App);
