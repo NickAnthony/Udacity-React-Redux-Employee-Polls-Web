@@ -13,6 +13,7 @@ const Question = (props) => {
         e.target.value
       )
     );
+    props.router.navigate("/");
   };
 
   return (
