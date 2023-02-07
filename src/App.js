@@ -16,13 +16,13 @@ function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
     props.dispatch(setAuthedUser("sarahedo"));
-  }, [props]);
+  }, []);
 
   return (
     <Fragment>
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
-        <Nav avatar={props.authedUserAvatarURL} />
+        <Nav />
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
@@ -36,10 +36,4 @@ function App(props) {
   );
 }
 
-const mapStateToProps = ({ authedUser, users }) => {
-  return {
-    authedUserAvatarURL: authedUser ? users[authedUser].avatarURL : null,
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
+import { connect } from "react-redux";
 
 const Nav = (props) => {
   return (
@@ -29,5 +30,9 @@ const Nav = (props) => {
     </nav>
   );
 };
-
-export default Nav;
+const mapStateToProps = ({ authedUser, users }) => {
+  return {
+    authedUserAvatarURL: authedUser ? users[authedUser].avatarURL : null,
+  };
+};
+export default connect(mapStateToProps)(Nav);
