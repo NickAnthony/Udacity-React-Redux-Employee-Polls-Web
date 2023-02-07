@@ -37,7 +37,6 @@ function App(props) {
 }
 
 const mapStateToProps = ({ authedUser, users }) => {
-  console.log(authedUser);
   return {
     authedUserAvatarURL: authedUser ? users[authedUser].avatarURL : null,
   };
