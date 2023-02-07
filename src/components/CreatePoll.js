@@ -80,9 +80,6 @@ const CreatePoll = (props) => {
   );
 };
 
-const mapStateToProps = ({ authedUser }) => {
-  return {
-    authedUser,
-  };
-};
+const mapStateToProps = ({ authedUser }) => ({ authedUser });
+
 export default connect(mapStateToProps)(CreatePoll);
