@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { BsPersonCircle } from "react-icons/bs";
 import { withRouter } from "../utils/helpers";
 import { handleUserVote } from "../actions/shared";
+import VoteOption from "./VoteOption";
 
 const Question = (props) => {
   const handleClick = (e) => {
@@ -26,30 +27,16 @@ const Question = (props) => {
       )}
       <h3>Would You Rather...</h3>
       <div className="container-row">
-        <div className="container-column question-option-container">
-          <span className="question-option">
-            {props.question.optionOne.text}
-          </span>
-          <button
-            className="question-answer-btn"
-            value={1}
-            onClick={handleClick}
-          >
-            Vote
-          </button>
-        </div>
-        <div className="container-column question-option-container">
-          <span className="question-option">
-            {props.question.optionTwo.text}
-          </span>
-          <button
-            className="question-answer-btn"
-            value={2}
-            onClick={handleClick}
-          >
-            Vote
-          </button>
-        </div>
+        <VoteOption
+          optionText={props.question.optionOne.text}
+          optionNumber={1}
+          handleClick={handleClick}
+        />
+        <VoteOption
+          optionText={props.question.optionTwo.text}
+          optionNumber={2}
+          handleClick={handleClick}
+        />
       </div>
     </div>
   );
