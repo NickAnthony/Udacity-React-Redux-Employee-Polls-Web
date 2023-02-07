@@ -3,8 +3,22 @@ import { BsPersonCircle } from "react-icons/bs";
 import { withRouter } from "../utils/helpers";
 import { handleUserVote } from "../actions/shared";
 import VoteOption from "./VoteOption";
+import AnsweredOption from "./AnsweredOption";
+import UserAnswer from "./UserAnswer";
 
 const Question = (props) => {
+  const answeredOptionOne = props.question.optionOne.votes.includes(
+    props.authedUserDetails.id
+  );
+  const answeredOptionTwo = props.question.optionTwo.votes.includes(
+    props.authedUserDetails.id
+  );
+  const answeredQuestion = answeredOptionOne || answeredOptionTwo;
+
+  const totalVotes =
+    props.question.optionOne.votes.length +
+    props.question.optionTwo.votes.length;
+
   const handleClick = (e) => {
     e.preventDefault();
     props.dispatch(
@@ -14,30 +28,57 @@ const Question = (props) => {
         e.target.value
       )
     );
-    props.router.navigate("/");
+    props.router.navigate(`/poll/${props.question.id}`);
   };
 
   return (
     <div className="container">
-      <h3>Poll by {props.authedUserDetails.id}</h3>
+      <h3>Poll by {props.question.author}</h3>
       {props.authedUserDetails.avatarURL ? (
         <img src={props.authedUserDetails.avatarURL} className="profile" />
       ) : (
         <BsPersonCircle className="profile" size={100} />
       )}
       <h3>Would You Rather...</h3>
-      <div className="container-row">
-        <VoteOption
-          optionText={props.question.optionOne.text}
-          optionNumber={1}
-          handleClick={handleClick}
+      {answeredQuestion && (
+        <div className="container-row">
+          <AnsweredOption
+            optionText={props.question.optionOne.text}
+            questionVotes={props.question.optionOne.votes.length}
+            totalVotes={totalVotes}
+            chosenByAuthedUser={answeredOptionOne}
+          />
+          <AnsweredOption
+            optionText={props.question.optionTwo.text}
+            questionVotes={props.question.optionTwo.votes.length}
+            totalVotes={totalVotes}
+            chosenByAuthedUser={answeredOptionTwo}
+          />
+        </div>
+      )}
+      {answeredQuestion && (
+        <UserAnswer
+          answeredOptionOne={answeredOptionOne}
+          answeredOptionTwo={answeredOptionTwo}
+          optionOneText={props.question.optionOne.text}
+          optionTwoText={props.question.optionTwo.text}
         />
-        <VoteOption
-          optionText={props.question.optionTwo.text}
-          optionNumber={2}
-          handleClick={handleClick}
-        />
-      </div>
+      )}
+
+      {!answeredQuestion && (
+        <div className="container-row">
+          <VoteOption
+            optionText={props.question.optionOne.text}
+            optionNumber={1}
+            handleClick={handleClick}
+          />
+          <VoteOption
+            optionText={props.question.optionTwo.text}
+            optionNumber={2}
+            handleClick={handleClick}
+          />
+        </div>
+      )}
     </div>
   );
 };
