@@ -10,12 +10,12 @@ import Nav from "./components/Nav";
 import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
 import Question from "./components/Question";
+import Login from "./components/Login";
 
 function App(props) {
   // Load the initial user and question data asynchronously via useEffect
   useEffect(() => {
     props.dispatch(handleInitialData());
-    props.dispatch(setAuthedUser("sarahedo"));
   }, []);
 
   return (
@@ -29,6 +29,8 @@ function App(props) {
             <Route path="/new" exact element={<CreatePoll />} />
             <Route path="/leaderboard" exact element={<Leaderboard />} />
             <Route path="/poll/:id" element={<Question />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Login />} />
           </Routes>
         )}
       </div>

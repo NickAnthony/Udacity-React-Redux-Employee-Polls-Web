@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { BsPersonCircle } from "react-icons/bs";
+import DefaultAvatar from "../images/DefaultAvatar.png";
 
 const Leaderboard = (props) => {
   return (
@@ -16,11 +16,17 @@ const Leaderboard = (props) => {
           return (
             <tr key={username}>
               <td className="profile-container">
-                {user.avatarURL ? (
-                  <img src={user.avatarURL} className="profile" />
-                ) : (
-                  <BsPersonCircle className="profile" size={30} />
-                )}
+                {/* This dynamically sets the avatar based on the presence of a URL. */}
+                <div
+                  className="profile-avatar"
+                  style={{
+                    backgroundImage: `url(${
+                      user.avatarURL ? user.avatarURL : DefaultAvatar
+                    })`,
+                    height: "40px",
+                    width: "40px",
+                  }}
+                />
                 <div className="profile-name-container">
                   <span className="profile-name">{user.name}</span>
                   <span className="profile-username">{username}</span>
