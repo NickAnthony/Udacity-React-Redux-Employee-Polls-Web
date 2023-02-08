@@ -45,6 +45,16 @@ let users = {
     },
     questions: [],
   },
+  nickanthony: {
+    id: "nickanthony",
+    password: "secret",
+    name: "Nick Anthony",
+    avatarURL: "https://i.redd.it/ofmlty7h86fa1.jpg",
+    answers: {
+      xj352vofupe1dqz9emx13r: "optionTwo",
+    },
+    questions: [],
+  },
 };
 
 let questions = {
@@ -122,7 +132,7 @@ let questions = {
       text: "deploy to production once every two weeks",
     },
     optionTwo: {
-      votes: ["tylermcginnis"],
+      votes: ["tylermcginnis", "nickanthony"],
       text: "deploy to production once every month",
     },
   },
