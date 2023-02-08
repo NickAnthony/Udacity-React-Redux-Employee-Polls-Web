@@ -34,8 +34,8 @@ const Question = (props) => {
   return (
     <div className="container">
       <h3>Poll by {props.question.author}</h3>
-      {props.authedUserDetails.avatarURL ? (
-        <img src={props.authedUserDetails.avatarURL} className="profile" />
+      {props.author.avatarURL ? (
+        <img src={props.author.avatarURL} className="profile" />
       ) : (
         <BsPersonCircle className="profile" size={100} />
       )}
@@ -89,6 +89,7 @@ const mapStateToProps = ({ questions, authedUser, users }, props) => {
   return {
     question: questions[id],
     authedUserDetails: users[authedUser],
+    author: users[questions[id].author],
   };
 };
 
