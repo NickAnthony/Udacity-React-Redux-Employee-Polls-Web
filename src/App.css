@@ -72,11 +72,11 @@ p {
 
 input {
   width: 100%;
-  height: 20px;
   border-style: solid;
   border-width: 1px;
   border-color: #8e8d8a;
   border-radius: 0.1em;
+  padding: 10px;
 }
 input:focus {
   outline-color: #e98074;
@@ -372,13 +372,17 @@ th:last-of-type {
   border-radius: 5px;
 }
 
+.login-center-container {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  min-width: 400px;
+}
 .login-container {
   margin-top: 20px;
   padding: 5vw;
   border: 1px solid #e98074;
   border-radius: 5px;
-  width: 30%;
-  min-width: 250px;
 }
 .login-form {
   width: 100%;
@@ -386,7 +390,6 @@ th:last-of-type {
 
 button {
   display: inline-block;
-  width: 100%;
   padding: 1em 1.2em;
   border: 0.1em solid #e98074;
   margin: 0 0.3em 0.3em 0;

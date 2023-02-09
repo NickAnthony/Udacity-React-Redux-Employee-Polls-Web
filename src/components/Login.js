@@ -48,34 +48,36 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container-column login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h1>Welcome to Web Polls!</h1>
-        <h2>Login</h2>
-        <p>Username</p>
-        <input type="text" value={username} onChange={handleChangeUsername} />
-        <p>Password</p>
-        <input
-          type="password"
-          value={password}
-          onChange={handleChangePassword}
-        />
-        <br />
-        <br />
-        <button
-          className="btn"
-          type="submit"
-          disabled={username === "" || password === ""}
-        >
-          Submit
-        </button>
-        {showSignInHelp && (
-          <p className="sign-in-help">
-            Sign in failed... maybe you're looking to{" "}
-            <Link to="/new-user">create a profile</Link>?
-          </p>
-        )}
-      </form>
+    <div className="login-center-container">
+      <div className="container-column login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h1>Welcome to Web Polls!</h1>
+          <h2>Login</h2>
+          <p>Username</p>
+          <input type="text" value={username} onChange={handleChangeUsername} />
+          <p>Password</p>
+          <input
+            type="password"
+            value={password}
+            onChange={handleChangePassword}
+          />
+          <br />
+          <br />
+          <button
+            className="btn"
+            type="submit"
+            disabled={username === "" || password === ""}
+          >
+            Submit
+          </button>
+          {showSignInHelp && (
+            <p className="sign-in-help">
+              Sign in failed... maybe you're looking to{" "}
+              <Link to="/new-user">create a profile</Link>?
+            </p>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
