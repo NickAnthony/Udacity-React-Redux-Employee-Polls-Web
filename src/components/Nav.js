@@ -20,7 +20,7 @@ const Nav = (props) => {
         </div>
       )}
       {!props.authedUser && (
-        <div>
+        <div className="container-row">
           <Link to="/login" className="nav-item">
             Login
           </Link>

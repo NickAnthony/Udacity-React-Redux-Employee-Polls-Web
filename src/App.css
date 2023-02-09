@@ -197,13 +197,15 @@ input:focus {
   border-bottom-style: solid;
   border-width: 1px;
   border-color: transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 
   transition: all 350ms cubic-bezier(0.23, 1, 0.32, 1);
   transform-origin: bottom center;
 }
 .nav-item:hover,
 .is-active {
-  color: #e98074;
+  background-color: #e98074;
 
   border-color: #e98074;
 }
