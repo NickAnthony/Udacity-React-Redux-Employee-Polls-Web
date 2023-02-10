@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import { setAuthedUser } from "./actions/authedUser";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
-import CreatePoll from "./components/CreatePoll";
+import CreateQuestion from "./components/CreateQuestion";
 import Leaderboard from "./components/Leaderboard";
 import Question from "./components/Question";
 import Login from "./components/Login";
@@ -27,7 +27,7 @@ function App(props) {
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
-            <Route path="/new" exact element={<CreatePoll />} />
+            <Route path="/new" exact element={<CreateQuestion />} />
             <Route path="/leaderboard" exact element={<Leaderboard />} />
             <Route path="/poll/:id" element={<Question />} />
             <Route path="/login" element={<Login />} />

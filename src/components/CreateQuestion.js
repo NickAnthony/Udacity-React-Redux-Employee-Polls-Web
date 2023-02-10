@@ -5,7 +5,7 @@ import { _saveQuestion } from "../utils/_DATA";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { useNavigate } from "react-router";
 
-const CreatePoll = (props) => {
+const CreateQuestion = (props) => {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
   const navigate = useNavigate();
@@ -82,4 +82,4 @@ const CreatePoll = (props) => {
 
 const mapStateToProps = ({ authedUser }) => ({ authedUser });
 
-export default connect(mapStateToProps)(CreatePoll);
+export default connect(mapStateToProps)(CreateQuestion);
