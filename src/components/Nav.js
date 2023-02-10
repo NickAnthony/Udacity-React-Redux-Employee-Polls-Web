@@ -28,16 +28,18 @@ const Nav = (props) => {
       )}
       <div className="container-row">
         {/* This dynamically sets the avatar based on the presence of a URL. */}
-        <div
-          className="profile-avatar"
-          style={{
-            backgroundImage: `url(${
-              props.authedUserAvatarURL
-                ? props.authedUserAvatarURL
-                : DefaultAvatar
-            })`,
-          }}
-        />
+        <Link to="/profile">
+          <div
+            className="profile-avatar"
+            style={{
+              backgroundImage: `url(${
+                props.authedUserAvatarURL
+                  ? props.authedUserAvatarURL
+                  : DefaultAvatar
+              })`,
+            }}
+          />
+        </Link>
         <Link to="/logout" className="nav-item">
           Logout
         </Link>

@@ -11,6 +11,7 @@ import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
 import Question from "./components/Question";
 import Login from "./components/Login";
+import UserProfile from "./components/UserProfile";
 
 function App(props) {
   // Load the initial user and question data asynchronously via useEffect
@@ -31,6 +32,7 @@ function App(props) {
             <Route path="/poll/:id" element={<Question />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Login />} />
+            <Route path="/profile" element={<UserProfile />} />
           </Routes>
         )}
       </div>

@@ -2,6 +2,7 @@ import {
   RECEIVE_USERS,
   ADD_ANSWER_TO_USER,
   ADD_QUESTION_TO_USER,
+  UPDATE_USER,
 } from "../actions/users";
 
 export default function users(state = {}, action) {
@@ -35,6 +36,17 @@ export default function users(state = {}, action) {
           questions: state[action.userId].questions.concat([action.questionId]),
         },
       };
+    case UPDATE_USER: {
+      return {
+        ...state,
+        [action.userId]: {
+          ...state[action.userId],
+          password: action.password,
+          name: action.name,
+          avatarURL: action.avatarURL,
+        },
+      };
+    }
     default:
       return state;
   }
