@@ -1,8 +1,8 @@
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { _getUsers } from "../utils/_DATA";
 import { _getQuestions } from "../utils/_DATA";
-import { addAnswerToUser, receiveUsers } from "./users";
-import { addUserToAnswer, receiveQuestions } from "./questions";
+import { addAnswerToUser, addQuestionToUser, receiveUsers } from "./users";
+import { addQuestion, addUserToAnswer, receiveQuestions } from "./questions";
 
 export function handleInitialData() {
   return (dispatch) => {
@@ -27,5 +27,12 @@ export function handleUserVote(questionId, userId, voteOption) {
     dispatch(addAnswerToUser(questionId, userId, voteOption));
     dispatch(addUserToAnswer(questionId, userId, voteOption));
     dispatch(hideLoading());
+  };
+}
+
+export function handleAddQuestion(question) {
+  return (dispatch) => {
+    dispatch(addQuestion(question));
+    dispatch(addQuestionToUser(question.id, question.author));
   };
 }

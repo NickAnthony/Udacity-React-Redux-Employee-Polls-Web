@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { useState } from "react";
-import { addQuestion } from "../actions/questions";
+import { handleAddQuestion } from "../actions/shared";
 import { _saveQuestion } from "../utils/_DATA";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { useNavigate } from "react-router";
@@ -20,7 +20,7 @@ const CreatePoll = (props) => {
       author: props.authedUser,
     })
       .then((formattedQuestion) => {
-        props.dispatch(addQuestion(formattedQuestion));
+        props.dispatch(handleAddQuestion(formattedQuestion));
         setFirstOption("");
         setSecondOption("");
         navigate("/");
