@@ -321,36 +321,14 @@ th:last-of-type {
 .question-answer-btn {
   width: 100%;
   height: 40px;
-  font-size: 16px;
-  font-weight: bold;
-
-  background-color: #e98074;
-  border: none;
-  color: #eae7dc;
-
-  border: 1px solid #e98074;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-
-  cursor: pointer;
-  margin: 0;
-  min-height: 40px;
-  min-width: 0;
-  outline: none;
-  padding: 8px 12px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  will-change: transform;
-}
-.question-answer-btn:disabled {
-  pointer-events: none;
-}
-.question-answer-btn:hover {
-  background-color: #e85a4f;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .question-answer-percentage {
@@ -421,7 +399,7 @@ button {
   display: inline-block;
   padding: 1em 1.2em;
   border: 0.1em solid #e98074;
-  margin: 0 0.3em 0.3em 0;
+  margin: 0 0 0 0;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
