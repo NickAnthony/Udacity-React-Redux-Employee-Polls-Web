@@ -1,19 +1,19 @@
-import "./App.css";
+import "../App.css";
 import { connect } from "react-redux";
-import { handleInitialData } from "./actions/shared";
+import { handleInitialData } from "../actions/shared";
 import { useEffect, Fragment } from "react";
 import LoadingBar from "react-redux-loading-bar";
-import Dashboard from "./components/Dashboard";
-import { setAuthedUser } from "./actions/authedUser";
+import Dashboard from "./Dashboard";
+import { setAuthedUser } from "../actions/authedUser";
 import { Routes, Route } from "react-router-dom";
-import Nav from "./components/Nav";
-import CreateQuestion from "./components/CreateQuestion";
-import Leaderboard from "./components/Leaderboard";
-import Question from "./components/Question";
-import Login from "./components/Login";
-import UserProfile from "./components/UserProfile";
+import Nav from "./Nav";
+import CreateQuestion from "./CreateQuestion";
+import Leaderboard from "./Leaderboard";
+import Question from "./Question";
+import Login from "./Login";
+import UserProfile from "./UserProfile";
 import { useNavigate } from "react-router-dom";
-import CreateUser from "./components/CreateUser";
+import CreateUser from "./CreateUser";
 
 function App(props) {
   const navigate = useNavigate();
