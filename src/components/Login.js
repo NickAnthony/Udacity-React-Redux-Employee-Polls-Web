@@ -6,6 +6,7 @@ import users from "../reducers/users";
 import { withRouter } from "../utils/helpers";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Link } from "react-router-dom";
+import PasswordInput from "./PasswordInput";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -56,10 +57,9 @@ const Login = (props) => {
           <p>Username</p>
           <input type="text" value={username} onChange={handleChangeUsername} />
           <p>Password</p>
-          <input
-            type="password"
-            value={password}
-            onChange={handleChangePassword}
+          <PasswordInput
+            password={password}
+            handleChangePassword={handleChangePassword}
           />
           <br />
           <br />
@@ -70,10 +70,16 @@ const Login = (props) => {
           >
             Submit
           </button>
+          {!showSignInHelp && (
+            <p className="sign-in-help">
+              New to Web Polls? <Link to="/user/new">Create a profile</Link>
+            </p>
+          )}
           {showSignInHelp && (
             <p className="sign-in-help">
-              Sign in failed... maybe you're looking to{" "}
-              <Link to="/new-user">create a profile</Link>?
+              Sign in failed... <br />
+              maybe you're looking to{" "}
+              <Link to="/user/new">create a new profile</Link>?
             </p>
           )}
         </form>

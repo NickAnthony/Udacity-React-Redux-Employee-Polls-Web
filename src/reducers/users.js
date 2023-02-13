@@ -3,6 +3,7 @@ import {
   ADD_ANSWER_TO_USER,
   ADD_QUESTION_TO_USER,
   UPDATE_USER,
+  ADD_NEW_USER,
 } from "../actions/users";
 
 export default function users(state = {}, action) {
@@ -44,6 +45,19 @@ export default function users(state = {}, action) {
           password: action.password,
           name: action.name,
           avatarURL: action.avatarURL,
+        },
+      };
+    }
+    case ADD_NEW_USER: {
+      return {
+        ...state,
+        [action.userId]: {
+          id: action.userId,
+          password: action.password,
+          name: action.name,
+          avatarURL: action.avatarURL,
+          answers: {},
+          questions: [],
         },
       };
     }

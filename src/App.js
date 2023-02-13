@@ -13,6 +13,7 @@ import Question from "./components/Question";
 import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
 import { useNavigate } from "react-router-dom";
+import CreateUser from "./components/CreateUser";
 
 function App(props) {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ function App(props) {
     <Fragment>
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
+        {/* // TODO: Remove nav from Login screen  */}
         <Nav />
         {props.loading === true ? null : (
           <Routes>
@@ -39,6 +41,7 @@ function App(props) {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Login />} />
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/user/new" element={<CreateUser />} />
           </Routes>
         )}
       </div>
@@ -46,6 +49,10 @@ function App(props) {
   );
 }
 
-const mapStateToProps = ({ authedUser }) => ({ authedUser });
+const mapStateToProps = ({ authedUser, users, questions }) => ({
+  authedUser,
+  users,
+  questions,
+});
 
 export default connect(mapStateToProps)(App);
