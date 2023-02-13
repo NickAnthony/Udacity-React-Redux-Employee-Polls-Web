@@ -7,11 +7,11 @@ import { withRouter } from "../utils/helpers";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Link } from "react-router-dom";
 import { createUser } from "../actions/users";
-import DefaultAvatar from "../images/DefaultAvatar.png";
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import PasswordInput from "./PasswordInput";
+import UserAvatarPicture from "./UserAvatarPicture";
 
 const CreateUser = (props) => {
   const [username, setUsername] = useState("");
@@ -88,14 +88,7 @@ const CreateUser = (props) => {
         <p>Profile Picture URL</p>
         <input type="text" value={avatarURL} onChange={handleChangeAvatarURL} />
         <p />
-        <div
-          className="profile-avatar"
-          style={{
-            backgroundImage: `url(${avatarURL ? avatarURL : DefaultAvatar})`,
-            height: "100px",
-            width: "100px",
-          }}
-        />
+        <UserAvatarPicture avatarURL={avatarURL} size={100} />
         <br />
         <br />
         <button type="submit" disabled={username === "" || password === ""}>

@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import DefaultAvatar from "../images/DefaultAvatar.png";
 import { withRouter } from "../utils/helpers";
 import { handleUserVote } from "../actions/shared";
 import VoteOption from "./VoteOption";
 import AnsweredOption from "./AnsweredOption";
 import UserAnswer from "./UserAnswer";
+import UserAvatarPicture from "./UserAvatarPicture";
 
 const Question = (props) => {
   const answeredOptionOne = props.question.optionOne.votes.includes(
@@ -34,16 +34,7 @@ const Question = (props) => {
   return (
     <div className="container">
       <h3>Poll by {props.question.author}</h3>
-      <div
-        className="profile-avatar"
-        style={{
-          backgroundImage: `url(${
-            props.author.avatarURL ? props.author.avatarURL : DefaultAvatar
-          })`,
-          height: "120px",
-          width: "120px",
-        }}
-      />
+      <UserAvatarPicture avatarURL={props.author.avatarURL} size={120} />
       <h3>Would You Rather...</h3>
       {answeredQuestion && (
         <div className="container-row">

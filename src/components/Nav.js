@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import DefaultAvatar from "../images/DefaultAvatar.png";
 import { FaPoll } from "react-icons/fa";
+import UserAvatarPicture from "./UserAvatarPicture";
 
 const Nav = (props) => {
   return (
@@ -22,16 +22,7 @@ const Nav = (props) => {
       <div className="container-row">
         {/* This dynamically sets the avatar based on the presence of a URL. */}
         <Link to="/profile">
-          <div
-            className="profile-avatar"
-            style={{
-              backgroundImage: `url(${
-                props.authedUserAvatarURL
-                  ? props.authedUserAvatarURL
-                  : DefaultAvatar
-              })`,
-            }}
-          />
+          <UserAvatarPicture avatarURL={props.authedUserAvatarURL} />
         </Link>
         <Link to="/logout" className="nav-item">
           Logout

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import DefaultAvatar from "../images/DefaultAvatar.png";
 import { useState } from "react";
 import QuestionsLayout from "./QuestionsLayout";
 import { updateUser } from "../actions/users";
+import UserAvatarPicture from "./UserAvatarPicture";
 
 const UserProfile = (props) => {
   // Set to true to display information, without being able to edit it (edit is disabled)
@@ -53,18 +53,9 @@ const UserProfile = (props) => {
     <div className="container-column">
       <div className="container-row user-profile-container">
         <div className="user-profile-column container-column">
-          {/* This dynamically sets the avatar based on the presence of a URL. */}
-          <div
-            className="profile-avatar"
-            style={{
-              backgroundImage: `url(${
-                props.authedUserDetails.avatarURL
-                  ? props.authedUserDetails.avatarURL
-                  : DefaultAvatar
-              })`,
-              height: "200px",
-              width: "200px",
-            }}
+          <UserAvatarPicture
+            avatarURL={props.authedUserDetails.avatarURL}
+            size={200}
           />
           <h2>{props.authedUserDetails.name}</h2>
           <h4>{props.authedUserDetails.username}</h4>

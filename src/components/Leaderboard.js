@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import DefaultAvatar from "../images/DefaultAvatar.png";
+import UserAvatarPicture from "./UserAvatarPicture";
 
 const Leaderboard = (props) => {
   return (
@@ -16,17 +16,7 @@ const Leaderboard = (props) => {
           return (
             <tr key={username}>
               <td className="profile-container">
-                {/* This dynamically sets the avatar based on the presence of a URL. */}
-                <div
-                  className="profile-avatar"
-                  style={{
-                    backgroundImage: `url(${
-                      user.avatarURL ? user.avatarURL : DefaultAvatar
-                    })`,
-                    height: "40px",
-                    width: "40px",
-                  }}
-                />
+                <UserAvatarPicture avatarURL={user.avatarURL} size={40} />
                 <div className="profile-name-container">
                   <span className="profile-name">{user.name}</span>
                   <span className="profile-username">{username}</span>
