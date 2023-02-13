@@ -52,29 +52,37 @@ const CreateQuestion = (props) => {
   };
 
   return (
-    <div className="container">
-      <h3>Would You Rather</h3>
-      <h4>Create Your Own Poll</h4>
-      <form className="create-poll-form" onSubmit={handleSubmit}>
-        <p>First Option</p>
-        <input
-          type="text"
-          value={firstOption}
-          onChange={handleFirstOptionChange}
-        />
-        <p>Second Option</p>
-        <input
-          type="text"
-          value={secondOption}
-          onChange={handleSecondOptionChange}
-        />
-        <button
-          className="btn"
-          type="submit"
-          disabled={firstOption === "" || secondOption === ""}
-        >
-          Submit
-        </button>
+    <div className="question-layout-container new-question-container">
+      <div className="question-layout-title">Create Your Own Poll</div>
+      <h4>Would You Rather...</h4>
+      <form onSubmit={handleSubmit}>
+        <div className="container-row">
+          <div className="container-column">
+            <p>First Option</p>
+            <textarea
+              type="text"
+              value={firstOption}
+              onChange={handleFirstOptionChange}
+            />
+          </div>
+          <div className="container-column">
+            <p>Second Option</p>
+            <textarea
+              type="text"
+              value={secondOption}
+              onChange={handleSecondOptionChange}
+            />
+          </div>
+        </div>
+        <br />
+        <div className="container-column">
+          <button
+            type="submit"
+            disabled={firstOption === "" || secondOption === ""}
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

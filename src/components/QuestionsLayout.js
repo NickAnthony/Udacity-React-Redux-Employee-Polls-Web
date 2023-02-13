@@ -3,7 +3,7 @@ import QuestionCard from "./QuestionCard";
 
 const QuestionsLayout = (props) => {
   return (
-    <div className="question-layout-container">
+    <div className="question-layout-container dashboard-question-container">
       <div className="question-layout-title">{props.title}</div>
       <div className="question-layout-box">
         {props.questionIds.map((questionId) => {

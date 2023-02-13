@@ -70,6 +70,7 @@ p {
   color: #494846;
 }
 
+textarea,
 input {
   width: 80%;
   border-style: solid;
@@ -78,8 +79,14 @@ input {
   border-radius: 0.3em;
   padding: 10px;
 }
+textarea,
 input:focus {
   outline-color: #e98074;
+}
+textarea {
+  width: 40vw !important;
+  max-width: 400px !important;
+  margin: 5px;
 }
 
 form {
@@ -90,8 +97,6 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 80%;
-  min-width: 80vw;
   padding: 5px;
   margin: 10px;
   background-color: #f4f3ed;
@@ -108,6 +113,15 @@ form {
   border-top-style: none;
   padding-top: 0px;
   border-radius: 5px;
+}
+
+.dashboard-question-container {
+  width: 80%;
+  min-width: 80vw;
+}
+
+.new-question-container {
+  max-width: max-content !important;
 }
 
 .question-layout-title {
