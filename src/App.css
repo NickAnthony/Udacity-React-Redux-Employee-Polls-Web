@@ -254,6 +254,7 @@ table {
   width: 150%;
   border-collapse: collapse;
   width: 80vw;
+  background-color: #f4f3ed;
 }
 th,
 td {
@@ -265,7 +266,7 @@ td {
 }
 th {
   font-size: 18px;
-  color: #eae7dc;
+  color: #f4f3ed;
   background-color: #e98074;
 }
 
