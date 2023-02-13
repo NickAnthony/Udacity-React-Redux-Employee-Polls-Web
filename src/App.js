@@ -31,7 +31,7 @@ function App(props) {
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
         {/* // TODO: Remove nav from Login screen  */}
-        <Nav />
+        {props.authedUser && <Nav />}
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />

@@ -42,6 +42,10 @@ const CreateUser = (props) => {
     e.preventDefault();
     setName(e.target.value);
   };
+  const handleNavigateBack = (e) => {
+    e.preventDefault();
+    props.router.navigate("/login");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,13 +98,10 @@ const CreateUser = (props) => {
         />
         <br />
         <br />
-        <button
-          className="btn"
-          type="submit"
-          disabled={username === "" || password === ""}
-        >
+        <button type="submit" disabled={username === "" || password === ""}>
           Submit
         </button>
+        <button onClick={handleNavigateBack}>Back to Login</button>
       </form>
     </div>
   );
