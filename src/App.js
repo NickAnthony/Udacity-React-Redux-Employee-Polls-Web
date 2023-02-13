@@ -12,11 +12,17 @@ import Leaderboard from "./components/Leaderboard";
 import Question from "./components/Question";
 import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
+import { useNavigate } from "react-router-dom";
 
 function App(props) {
+  const navigate = useNavigate();
   // Load the initial user and question data asynchronously via useEffect
   useEffect(() => {
     props.dispatch(handleInitialData());
+    // If no one is logged in, we want to return to the login screen.
+    if (!props.authedUser) {
+      navigate("/login");
+    }
   }, []);
 
   return (
@@ -40,4 +46,6 @@ function App(props) {
   );
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => ({ authedUser });
+
+export default connect(mapStateToProps)(App);
