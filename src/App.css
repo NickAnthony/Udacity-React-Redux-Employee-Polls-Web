@@ -401,16 +401,17 @@ th:last-of-type {
 }
 
 .login-center-container {
-  height: 75vh;
   display: flex;
   align-items: center;
-  min-width: 400px;
+  position: absolute;
+  height: 100%;
 }
 .login-container {
   margin-top: 20px;
   padding: 40px;
   border: 1px solid #e98074;
   border-radius: 5px;
+  background-color: #f4f3ed;
 }
 .login-form {
   width: 100%;
