@@ -8,12 +8,6 @@ const Nav = (props) => {
     <nav className="nav-container">
       {/* TODO: Make the active navigation link highlighed */}
       <div className="container-row">
-        <div className="nav-website-title">
-          <i>
-            <FaPoll style={{ marginRight: 4 }} />
-          </i>
-          <span>Web Polls</span>
-        </div>
         <Link to="/" className="nav-item">
           Home
         </Link>
@@ -42,6 +36,12 @@ const Nav = (props) => {
         <Link to="/logout" className="nav-item">
           Logout
         </Link>
+        <div className="nav-website-title">
+          <i>
+            <FaPoll style={{ marginRight: 4 }} />
+          </i>
+          <span>Web Polls</span>
+        </div>
       </div>
     </nav>
   );

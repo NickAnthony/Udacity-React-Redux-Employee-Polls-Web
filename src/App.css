@@ -203,12 +203,13 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  padding-top: 2px;
-  padding-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-bottom-style: solid;
   border-width: 1px;
   border-color: #8e8d8a;
@@ -216,6 +217,12 @@ textarea {
 }
 
 .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
   color: #494846;
   text-decoration: none;
   padding: 5px;
@@ -225,8 +232,6 @@ textarea {
   border-bottom-style: solid;
   border-width: 1px;
   border-color: transparent;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
 
   transition: all 350ms cubic-bezier(0.23, 1, 0.32, 1);
   transform-origin: bottom center;
@@ -234,8 +239,8 @@ textarea {
 .nav-item:hover,
 .is-active {
   background-color: #e98074;
-
   border-color: #e98074;
+  color: #f4f3ed;
 }
 
 .profile-avatar {
