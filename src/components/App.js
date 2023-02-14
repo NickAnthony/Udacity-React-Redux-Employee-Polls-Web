@@ -32,7 +32,7 @@ function App(props) {
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
-            <Route path="/new" exact element={<CreateQuestion />} />
+            <Route path="/add" exact element={<CreateQuestion />} />
             <Route path="/leaderboard" exact element={<Leaderboard />} />
             <Route path="/questions/:id" element={<Question />} />
             <Route path="/login" element={<Login />} />

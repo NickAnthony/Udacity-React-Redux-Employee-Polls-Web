@@ -11,7 +11,7 @@ const Nav = (props) => {
         <Link to="/" className="nav-item">
           Home
         </Link>
-        <Link to="/new" className="nav-item">
+        <Link to="/add" className="nav-item">
           New
         </Link>
         <Link to="/leaderboard" className="nav-item">
