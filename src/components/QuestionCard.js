@@ -5,7 +5,7 @@ const QuestionCard = (props) => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
-    navigate(`/questions/1234`);
+    navigate(`/questions/${props.question.id}`);
   };
   return (
     <div className="question-card-container">
