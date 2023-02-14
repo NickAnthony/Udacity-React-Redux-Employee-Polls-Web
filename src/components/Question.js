@@ -81,7 +81,6 @@ const Question = (props) => {
 
 const mapStateToProps = ({ questions, authedUser, users }, props) => {
   const { id } = props.router.params;
-  console.log(props);
 
   return {
     question: questions[id],
