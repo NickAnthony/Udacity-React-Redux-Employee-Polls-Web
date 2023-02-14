@@ -11,6 +11,7 @@ const PasswordInput = ({ password, handleChangePassword }) => {
         value={password}
         onChange={handleChangePassword}
         className="password-input"
+        data-testid="password-input"
       />
       <i
         className="password-vis-icon "

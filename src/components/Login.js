@@ -43,7 +43,6 @@ const Login = ({ dispatch, users, router }) => {
 
     // Sign in failed, show help.
     setShowSignInHelp(true);
-    return;
   };
 
   return (
@@ -53,7 +52,12 @@ const Login = ({ dispatch, users, router }) => {
           <h1>Welcome to Web Polls!</h1>
           <h2>Login</h2>
           <p>Username</p>
-          <input type="text" value={username} onChange={handleChangeUsername} />
+          <input
+            type="text"
+            value={username}
+            onChange={handleChangeUsername}
+            data-testid="username-input"
+          />
           <p>Password</p>
           <PasswordInput
             password={password}
@@ -65,16 +69,17 @@ const Login = ({ dispatch, users, router }) => {
             className="btn"
             type="submit"
             disabled={username === "" || password === ""}
+            data-testid="submit-button"
           >
             Submit
           </button>
           {!showSignInHelp && (
-            <p className="sign-in-help">
+            <p className="sign-in-help" data-testid="create-profile-help">
               New to Web Polls? <Link to="/user/new">Create a profile</Link>
             </p>
           )}
           {showSignInHelp && (
-            <p className="sign-in-help">
+            <p className="sign-in-help" data-testid="signin-failed-help">
               Sign in failed... <br />
               maybe you're looking to{" "}
               <Link to="/user/new">create a new profile</Link>?
