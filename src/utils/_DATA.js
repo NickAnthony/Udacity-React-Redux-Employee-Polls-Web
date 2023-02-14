@@ -1,4 +1,4 @@
-let users = {
+export var users = {
   sarahedo: {
     id: "sarahedo",
     password: "password123",
@@ -57,7 +57,7 @@ let users = {
   },
 };
 
-let questions = {
+export var questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: "8xf0y6ziyjabvozdd253nd",
     author: "sarahedo",

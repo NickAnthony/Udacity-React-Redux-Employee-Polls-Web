@@ -7,7 +7,7 @@ const UserAnswer = ({
   optionTwoText,
 }) => {
   return (
-    <div className="user-answer">
+    <div className="user-answer" data-testid="user-answer">
       {"You voted for... "}
       {(answeredOptionOne && optionOneText) ||
         (answeredOptionTwo && optionTwoText)}

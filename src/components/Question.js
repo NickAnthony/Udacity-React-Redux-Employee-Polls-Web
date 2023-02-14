@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { withRouter } from "../utils/helpers";
 import { handleUserVote } from "../actions/shared";
-import VoteOption from "./VoteOption";
 import AnsweredOption from "./AnsweredOption";
 import UserAnswer from "./UserAnswer";
 import UserAvatarPicture from "./UserAvatarPicture";
+import VoteOption from "./VoteOption";
 
 const Question = (props) => {
   const answeredOptionOne = props.question.optionOne.votes.includes(
@@ -81,6 +81,7 @@ const Question = (props) => {
 
 const mapStateToProps = ({ questions, authedUser, users }, props) => {
   const { id } = props.router.params;
+  console.log(props);
 
   return {
     question: questions[id],

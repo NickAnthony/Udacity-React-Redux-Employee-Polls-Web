@@ -8,6 +8,7 @@ const VoteOption = ({ optionText, optionNumber, handleClick }) => {
         className="question-answer-btn"
         value={optionNumber}
         onClick={handleClick}
+        data-testid="vote-option-button"
       >
         Vote
       </button>
