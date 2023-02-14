@@ -1,22 +1,20 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
-import { setAuthedUser } from "../actions/authedUser";
-import { useState } from "react";
-import users from "../reducers/users";
-import { withRouter } from "../utils/helpers";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "../utils/helpers";
+import { setAuthedUser } from "../actions/authedUser";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import PasswordInput from "./PasswordInput";
 
-const Login = (props) => {
+const Login = ({ dispatch, users, router }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignInHelp, setShowSignInHelp] = useState(false);
 
   // Logout by default when visiting this page
   useEffect(() => {
-    props.dispatch(setAuthedUser(""));
-  }, []);
+    dispatch(setAuthedUser(""));
+  }, [dispatch]);
 
   const handleChangeUsername = (e) => {
     e.preventDefault();
@@ -30,16 +28,16 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // If the username does not exist, return.
-    if (!props.users[username]) {
+    if (!users[username]) {
       setShowSignInHelp(true);
       return;
     }
     // Username exists, let's check the password.
-    if (props.users[username].password === password) {
-      props.dispatch(showLoading());
-      props.dispatch(setAuthedUser(username));
-      props.dispatch(hideLoading());
-      props.router.navigate("/");
+    if (users[username].password === password) {
+      dispatch(showLoading());
+      dispatch(setAuthedUser(username));
+      dispatch(hideLoading());
+      router.navigate("/");
       setShowSignInHelp(false);
     }
 
