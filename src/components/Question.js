@@ -17,12 +17,10 @@ const Question = ({
   answeredOptionTwo,
   answeredQuestion,
   totalVotes,
-  router,
 }) => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(handleUserVote(question.id, authedUserDetails.id, e.target.value));
-    router.navigate(`/questions/${question.id}`);
   };
 
   // Throw a 404 when question does not exist
@@ -92,20 +90,17 @@ const mapStateToProps = ({ questions, authedUser, users }, props) => {
       totalVotes: 0,
     };
   }
-  const answeredOptionOne = questions[id].optionOne.votes.includes(
-    users[authedUser]
-  );
-  const answeredOptionTwo = questions[id].optionTwo.votes.includes(
-    users[authedUser]
-  );
+  const question = questions[id];
+  const answeredOptionOne = question.optionOne.votes.includes(authedUser);
+  const answeredOptionTwo = question.optionTwo.votes.includes(authedUser);
   const answeredQuestion = answeredOptionOne || answeredOptionTwo;
 
   const totalVotes =
-    questions[id].optionOne.votes.length + questions[id].optionTwo.votes.length;
+    question.optionOne.votes.length + question.optionTwo.votes.length;
 
   return {
     notFound: false,
-    question: questions[id],
+    question,
     authedUserDetails: users[authedUser],
     author: users[questions[id].author],
     answeredOptionOne,

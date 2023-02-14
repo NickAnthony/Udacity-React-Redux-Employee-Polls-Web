@@ -28,4 +28,17 @@ describe("Question", () => {
     );
     expect(component).toMatchSnapshot();
   });
+
+  it("will throw a 404 error when the question id does not exist.", () => {
+    var component = render(
+      createTestAppWithStoreAndRouter("/questions/idThatDoesNotExist")
+    );
+    // Check that the 404 component is rendered
+    expect(component.getByTestId("404-error")).toBeInTheDocument();
+    // Check that other components are not rendered
+    expect(
+      component.queryByTestId("vote-option-button")
+    ).not.toBeInTheDocument();
+    expect(component.queryByTestId("answered-option")).not.toBeInTheDocument();
+  });
 });

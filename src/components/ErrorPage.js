@@ -1,7 +1,8 @@
 import { FaHeartBroken } from "react-icons/fa";
+
 const ErrorPage = () => {
   return (
-    <div className="create-user-profile-container">
+    <div className="create-user-profile-container" data-testid="404-error">
       <h1>404</h1>
       <h1>Looks like that question does not exist</h1>
       <h2>
