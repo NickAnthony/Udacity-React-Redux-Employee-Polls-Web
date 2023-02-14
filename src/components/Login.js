@@ -6,7 +6,7 @@ import { setAuthedUser } from "../actions/authedUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import PasswordInput from "./PasswordInput";
 
-const Login = ({ dispatch, users, router }) => {
+const Login = ({ dispatch, users, router, location }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignInHelp, setShowSignInHelp] = useState(false);
@@ -37,7 +37,7 @@ const Login = ({ dispatch, users, router }) => {
       dispatch(showLoading());
       dispatch(setAuthedUser(username));
       dispatch(hideLoading());
-      router.navigate("/");
+      router.navigate(location);
       setShowSignInHelp(false);
     }
 
@@ -48,7 +48,7 @@ const Login = ({ dispatch, users, router }) => {
   const handleBypassLogin = (e) => {
     e.preventDefault();
     dispatch(setAuthedUser("tylermcginnis"));
-    router.navigate("/");
+    router.navigate(location);
   };
 
   return (
@@ -100,6 +100,15 @@ const Login = ({ dispatch, users, router }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => ({ users });
+const mapStateToProps = ({ users }, props) => {
+  let location = props.router.location.pathname;
+  if (location === "/logout" || location === "/login") {
+    location = "/";
+  }
+  return {
+    users,
+    location: location,
+  };
+};
 
 export default withRouter(connect(mapStateToProps)(Login));
