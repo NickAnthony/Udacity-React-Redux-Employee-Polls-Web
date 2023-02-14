@@ -4,12 +4,12 @@ import QuestionsLayout from "./QuestionsLayout";
 import { updateUser } from "../actions/users";
 import UserAvatarPicture from "./UserAvatarPicture";
 
-const UserProfile = (props) => {
+const UserProfile = ({ dispatch, authedUserDetails }) => {
   // Set to true to display information, without being able to edit it (edit is disabled)
   const [displayModeEnabled, setDisplayModeEnabled] = useState(true);
-  const [avatarURL, setAvatarURL] = useState(props.authedUserDetails.avatarURL);
-  const [name, setName] = useState(props.authedUserDetails.name);
-  const [password, setPassword] = useState(props.authedUserDetails.password);
+  const [avatarURL, setAvatarURL] = useState(authedUserDetails.avatarURL);
+  const [name, setName] = useState(authedUserDetails.name);
+  const [password, setPassword] = useState(authedUserDetails.password);
 
   const invalidName = name === "" ? true : false;
   const invalidPass = password.length < 6 ? true : false;
@@ -20,18 +20,16 @@ const UserProfile = (props) => {
       alert("Please fix the errors before saving your changes.");
       return;
     }
-    props.dispatch(
-      updateUser(props.authedUserDetails.id, password, name, avatarURL)
-    );
+    dispatch(updateUser(authedUserDetails.id, password, name, avatarURL));
     setDisplayModeEnabled(true);
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
     setDisplayModeEnabled(true);
-    setAvatarURL(props.authedUserDetails.avatarURL);
-    setName(props.authedUserDetails.name);
-    setPassword(props.authedUserDetails.password);
+    setAvatarURL(authedUserDetails.avatarURL);
+    setName(authedUserDetails.name);
+    setPassword(authedUserDetails.password);
   };
 
   const handleUpdateName = (e) => {
@@ -54,11 +52,11 @@ const UserProfile = (props) => {
       <div className="container-row user-profile-container">
         <div className="user-profile-column container-column">
           <UserAvatarPicture
-            avatarURL={props.authedUserDetails.avatarURL}
+            avatarURL={authedUserDetails.avatarURL}
             size={200}
           />
-          <h2>{props.authedUserDetails.name}</h2>
-          <h4>{props.authedUserDetails.username}</h4>
+          <h2>{authedUserDetails.name}</h2>
+          <h4>{authedUserDetails.username}</h4>
         </div>
 
         <div className="container-column">
@@ -78,7 +76,7 @@ const UserProfile = (props) => {
             <p>Username (cannot be edited)</p>
             <input
               type="text"
-              value={props.authedUserDetails.id}
+              value={authedUserDetails.id}
               disabled={true}
               data-testid="username-input"
             />
@@ -134,17 +132,16 @@ const UserProfile = (props) => {
       <div className="user-profile-questions-container">
         <QuestionsLayout
           title={"My Questions"}
-          questionIds={props.authedUserDetails.questions}
+          questionIds={authedUserDetails.questions}
         />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ users, authedUser, questions }) => ({
+const mapStateToProps = ({ users, authedUser }) => ({
   authedUser,
   authedUserDetails: users[authedUser],
-  questions,
 });
 
 export default connect(mapStateToProps)(UserProfile);

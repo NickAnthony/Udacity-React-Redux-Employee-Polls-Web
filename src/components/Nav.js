@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FaPoll } from "react-icons/fa";
 import UserAvatarPicture from "./UserAvatarPicture";
 
-const Nav = (props) => {
+const Nav = ({ authedUserAvatarURL }) => {
   return (
     <nav className="nav-container">
       {/* TODO: Make the active navigation link highlighed */}
@@ -22,7 +22,7 @@ const Nav = (props) => {
       <div className="container-row">
         {/* This dynamically sets the avatar based on the presence of a URL. */}
         <Link to="/profile">
-          <UserAvatarPicture avatarURL={props.authedUserAvatarURL} />
+          <UserAvatarPicture avatarURL={authedUserAvatarURL} />
         </Link>
         <Link to="/logout" className="nav-item">
           Logout

@@ -5,22 +5,22 @@ import { _saveQuestion } from "../utils/_DATA";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { useNavigate } from "react-router";
 
-const CreateQuestion = (props) => {
+const CreateQuestion = ({ dispatch, authedUser }) => {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.dispatch(showLoading());
+    dispatch(showLoading());
 
     return _saveQuestion({
       optionOneText: firstOption,
       optionTwoText: secondOption,
-      author: props.authedUser,
+      author: authedUser,
     })
       .then((formattedQuestion) => {
-        props.dispatch(handleAddQuestion(formattedQuestion));
+        dispatch(handleAddQuestion(formattedQuestion));
         setFirstOption("");
         setSecondOption("");
         navigate("/");
@@ -30,14 +30,14 @@ const CreateQuestion = (props) => {
         console.log("Saving quesiton hit the following error:");
         console.log(e);
         console.log("The current state is:");
-        console.log(props);
+        console.log({ firstOption, secondOption, authedUser });
         console.groupEnd();
         alert(
           "There was an error when trying to save your question.  Please try again."
         );
       })
       .finally(() => {
-        props.dispatch(hideLoading());
+        dispatch(hideLoading());
       });
   };
 

@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
 import QuestionsLayout from "./QuestionsLayout";
 
-const Dashboard = (props) => {
-  const newQuestionIds = props.questionIds.filter(
+const Dashboard = ({ questionIds, questions, authedUser }) => {
+  const newQuestionIds = questionIds.filter(
     (questionId) =>
-      !props.questions[questionId].optionOne.votes.includes(props.authedUser) &&
-      !props.questions[questionId].optionTwo.votes.includes(props.authedUser)
+      !questions[questionId].optionOne.votes.includes(authedUser) &&
+      !questions[questionId].optionTwo.votes.includes(authedUser)
   );
 
-  const doneQuestionIds = props.questionIds.filter(
+  const doneQuestionIds = questionIds.filter(
     (questionId) =>
-      props.questions[questionId].optionOne.votes.includes(props.authedUser) ||
-      props.questions[questionId].optionTwo.votes.includes(props.authedUser)
+      questions[questionId].optionOne.votes.includes(authedUser) ||
+      questions[questionId].optionTwo.votes.includes(authedUser)
   );
 
   return (

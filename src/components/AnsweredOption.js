@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 /* AnsweredOption is a presentational component that shows
  * a poll option of a poll that has been answered by the authedUser.  */
 const AnsweredOption = ({
@@ -23,6 +25,13 @@ const AnsweredOption = ({
       </span>
     </div>
   );
+};
+
+AnsweredOption.propTypes = {
+  optionText: PropTypes.string.isRequired,
+  questionVotes: PropTypes.number.isRequired,
+  totalVotes: PropTypes.number.isRequired,
+  chosenByAuthedUser: PropTypes.string,
 };
 
 export default AnsweredOption;

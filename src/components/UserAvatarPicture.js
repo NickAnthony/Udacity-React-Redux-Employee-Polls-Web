@@ -1,4 +1,5 @@
 import DefaultAvatar from "../images/DefaultAvatar.png";
+import PropTypes from "prop-types";
 
 /* This dynamically sets the avatar based on the presence of a URL. */
 const UserAvatarPicture = ({ avatarURL, size }) => {
@@ -12,6 +13,11 @@ const UserAvatarPicture = ({ avatarURL, size }) => {
       }}
     />
   );
+};
+
+UserAvatarPicture.propTypes = {
+  avatarURL: PropTypes.string,
+  size: PropTypes.number,
 };
 
 export default UserAvatarPicture;

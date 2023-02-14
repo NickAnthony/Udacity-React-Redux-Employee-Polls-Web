@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import QuestionCard from "./QuestionCard";
 
-const QuestionsLayout = (props) => {
+const QuestionsLayout = ({ questions, title, questionIds }) => {
   return (
     <div className="question-layout-container dashboard-question-container">
-      <div className="question-layout-title">{props.title}</div>
+      <div className="question-layout-title">{title}</div>
       <div className="question-layout-box">
-        {props.questionIds.map((questionId) => {
-          const question = props.questions[questionId];
+        {questionIds.map((questionId) => {
+          const question = questions[questionId];
           return (
             <QuestionCard
               key={question.id}

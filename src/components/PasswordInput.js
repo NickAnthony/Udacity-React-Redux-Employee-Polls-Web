@@ -1,5 +1,6 @@
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const PasswordInput = ({ password, handleChangePassword }) => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -24,6 +25,11 @@ const PasswordInput = ({ password, handleChangePassword }) => {
       </i>
     </div>
   );
+};
+
+PasswordInput.propTypes = {
+  password: PropTypes.string.isRequired,
+  handleChangePassword: PropTypes.func.isRequired,
 };
 
 export default PasswordInput;

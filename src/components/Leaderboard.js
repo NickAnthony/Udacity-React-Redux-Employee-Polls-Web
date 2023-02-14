@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import UserAvatarPicture from "./UserAvatarPicture";
 
-const Leaderboard = (props) => {
+const Leaderboard = ({ sortedUsers, users }) => {
   return (
     <div className="container">
       <table>
@@ -10,9 +10,9 @@ const Leaderboard = (props) => {
           <th>Answered</th>
           <th>Created</th>
         </tr>
-        {props.sortedUsers.map((sortedUser) => {
+        {sortedUsers.map((sortedUser) => {
           const username = sortedUser[0];
-          const user = props.users[username];
+          const user = users[username];
           return (
             <tr key={username}>
               <td className="profile-container">
@@ -32,7 +32,7 @@ const Leaderboard = (props) => {
   );
 };
 
-const mapStateToProps = ({ users, authedUser }) => {
+const mapStateToProps = ({ users }) => {
   // First, we have to calculate each
   const unsortedUsers = Object.keys(users).map((username) => {
     const user = {
@@ -54,7 +54,6 @@ const mapStateToProps = ({ users, authedUser }) => {
   return {
     sortedUsers: sortedUsers,
     users,
-    authedUser,
   };
 };
 

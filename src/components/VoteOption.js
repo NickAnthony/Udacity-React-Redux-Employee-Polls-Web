@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 /* VoteOption is a presentational component that shows
  * a vote option for an unanswered question. */
 const VoteOption = ({ optionText, optionNumber, handleClick }) => {
@@ -14,6 +16,12 @@ const VoteOption = ({ optionText, optionNumber, handleClick }) => {
       </button>
     </div>
   );
+};
+
+VoteOption.propTypes = {
+  optionText: PropTypes.string.isRequired,
+  optionNumber: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default VoteOption;

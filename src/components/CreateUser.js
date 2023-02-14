@@ -8,7 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import PasswordInput from "./PasswordInput";
 import UserAvatarPicture from "./UserAvatarPicture";
 
-const CreateUser = (props) => {
+const CreateUser = ({ dispatch, users, router }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [avatarURL, setAvatarURL] = useState("");
@@ -21,7 +21,7 @@ const CreateUser = (props) => {
     e.preventDefault();
     const newUsername = e.target.value;
     setUsername(newUsername);
-    if (props.users[newUsername]) {
+    if (users[newUsername]) {
       setAvailableUserName(false);
     } else {
       setAvailableUserName(true);
@@ -41,19 +41,19 @@ const CreateUser = (props) => {
   };
   const handleNavigateBack = (e) => {
     e.preventDefault();
-    props.router.navigate("/login");
+    router.navigate("/login");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // If the username does not exist, return.
-    if (props.users[username]) {
+    if (users[username]) {
       setAvailableUserName(false);
       return;
     }
-    props.dispatch(createUser(username, password, name, avatarURL));
-    props.dispatch(setAuthedUser(username));
-    props.router.navigate("/");
+    dispatch(createUser(username, password, name, avatarURL));
+    dispatch(setAuthedUser(username));
+    router.navigate("/");
     return;
   };
 
