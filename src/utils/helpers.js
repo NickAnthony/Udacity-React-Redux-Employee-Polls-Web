@@ -15,11 +15,11 @@ export function withRouter(Component) {
 export function formatTimestamp(timestamp) {
   const date = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
+    month: "numeric",
+    day: "numeric",
   }).format(timestamp);
   const time = new Intl.DateTimeFormat("en-US", {
-    hour: "2-digit",
+    hour: "numeric",
     minute: "2-digit",
   }).format(timestamp);
   return `${time} | ${date}`;
