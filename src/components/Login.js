@@ -52,7 +52,7 @@ const Login = ({ dispatch, users, router }) => {
   };
 
   return (
-    <div className="login-center-container">
+    <div className="outer-center-container">
       <div className="container-column login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <h1>Welcome to Web Polls!</h1>

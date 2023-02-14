@@ -385,7 +385,7 @@ th:last-of-type {
   border-radius: 5px;
 }
 
-.login-center-container {
+.outer-center-container {
   display: flex;
   align-items: center;
   position: absolute;

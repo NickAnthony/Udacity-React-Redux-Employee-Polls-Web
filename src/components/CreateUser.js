@@ -58,43 +58,49 @@ const CreateUser = (props) => {
   };
 
   return (
-    <div className="create-user-profile-container">
-      <form onSubmit={handleSubmit}>
-        <h1>Create a profile</h1>
+    <div className="outer-center-container">
+      <div className="create-user-profile-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Create a profile</h1>
 
-        <p>Full Name</p>
-        <input type="text" value={name} onChange={handleChangeName} />
-        <p>Username</p>
-        <input type="text" value={username} onChange={handleChangeUsername} />
-        {availableUserName && username !== "" && (
-          <i>
-            <AiOutlineCheckCircle color="#72BD7A" />
-          </i>
-        )}
-        {!availableUserName && username !== "" && (
-          <i>
-            <RxCross2 color="#e85a4f" />
-            <span style={{ color: "#e85a4f" }}> Username taken</span>
-          </i>
-        )}
-        <p>Password</p>
-        <PasswordInput
-          password={password}
-          handleChangePassword={handleChangePassword}
-        />
-        <p>Profile Picture URL</p>
-        <input type="text" value={avatarURL} onChange={handleChangeAvatarURL} />
-        <p />
-        <UserAvatarPicture avatarURL={avatarURL} size={100} />
-        <br />
-        <br />
-        <div className="flex-space-between">
-          <button type="submit" disabled={username === "" || password === ""}>
-            Submit
-          </button>
-          <button onClick={handleNavigateBack}>Back to Login</button>
-        </div>
-      </form>
+          <p>Full Name</p>
+          <input type="text" value={name} onChange={handleChangeName} />
+          <p>Username</p>
+          <input type="text" value={username} onChange={handleChangeUsername} />
+          {availableUserName && username !== "" && (
+            <i>
+              <AiOutlineCheckCircle color="#72BD7A" />
+            </i>
+          )}
+          {!availableUserName && username !== "" && (
+            <i>
+              <RxCross2 color="#e85a4f" />
+              <span style={{ color: "#e85a4f" }}> Username taken</span>
+            </i>
+          )}
+          <p>Password</p>
+          <PasswordInput
+            password={password}
+            handleChangePassword={handleChangePassword}
+          />
+          <p>Profile Picture URL</p>
+          <input
+            type="text"
+            value={avatarURL}
+            onChange={handleChangeAvatarURL}
+          />
+          <p />
+          <UserAvatarPicture avatarURL={avatarURL} size={100} />
+          <br />
+          <br />
+          <div className="flex-space-between">
+            <button type="submit" disabled={username === "" || password === ""}>
+              Submit
+            </button>
+            <button onClick={handleNavigateBack}>Back to Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
