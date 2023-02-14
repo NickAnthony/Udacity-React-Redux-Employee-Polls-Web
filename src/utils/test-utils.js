@@ -29,7 +29,13 @@ export function createTestStoreWithInitialData() {
   });
 }
 
-export function createTestAppWithStore(initialRoute) {
+export function createTestAppWithStore(component) {
+  return (
+    <Provider store={createTestStoreWithInitialData()}>{component}</Provider>
+  );
+}
+
+export function createTestAppWithStoreAndRouter(initialRoute) {
   return (
     <Provider store={createTestStoreWithInitialData()}>
       <MemoryRouter initialEntries={[initialRoute]}>

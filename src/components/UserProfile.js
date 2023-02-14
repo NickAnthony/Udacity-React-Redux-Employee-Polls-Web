@@ -69,6 +69,7 @@ const UserProfile = (props) => {
               value={name}
               disabled={displayModeEnabled}
               onChange={handleUpdateName}
+              data-testid="full-name-input"
             />
             <br />
             <span style={{ color: "#E85A4F", fontSize: "small" }}>
@@ -79,6 +80,7 @@ const UserProfile = (props) => {
               type="text"
               value={props.authedUserDetails.id}
               disabled={true}
+              data-testid="username-input"
             />
             <p>Password</p>
             <input
@@ -86,6 +88,7 @@ const UserProfile = (props) => {
               value={password}
               disabled={displayModeEnabled}
               onChange={handleUpdatePassword}
+              data-testid="password-input"
             />
             <br />
             <span style={{ color: "#E85A4F", fontSize: "small" }}>
@@ -97,22 +100,32 @@ const UserProfile = (props) => {
               value={avatarURL}
               disabled={displayModeEnabled}
               onChange={handleUpdateAvatarURL}
+              data-testid="profile-photo-input"
             />
             <br />
             <br />
             {displayModeEnabled && (
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setDisplayModeEnabled(false);
                 }}
+                data-testid="display-mode-enable-button"
               >
                 Edit Profile
               </button>
             )}
             {!displayModeEnabled && (
               <div>
-                <button type="submit">Save Changes</button>
-                <button onClick={handleCancel}>Cancel</button>
+                <button type="submit" data-testid="submit-button">
+                  Save Changes
+                </button>
+                <button
+                  onClick={handleCancel}
+                  data-testid="display-mode-cancel-button"
+                >
+                  Cancel
+                </button>
               </div>
             )}
           </form>
