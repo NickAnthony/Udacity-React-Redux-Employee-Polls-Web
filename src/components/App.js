@@ -34,7 +34,7 @@ function App(props) {
             <Route path="/" exact element={<Dashboard />} />
             <Route path="/new" exact element={<CreateQuestion />} />
             <Route path="/leaderboard" exact element={<Leaderboard />} />
-            <Route path="/poll/:id" element={<Question />} />
+            <Route path="/questions/:id" element={<Question />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Login />} />
             <Route path="/profile" element={<UserProfile />} />

@@ -28,7 +28,7 @@ const Question = (props) => {
         e.target.value
       )
     );
-    props.router.navigate(`/poll/${props.question.id}`);
+    props.router.navigate(`/questions/${props.question.id}`);
   };
 
   return (
