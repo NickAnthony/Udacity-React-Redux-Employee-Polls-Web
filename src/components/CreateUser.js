@@ -1,13 +1,8 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
-import { setAuthedUser } from "../actions/authedUser";
 import { useState } from "react";
-import users from "../reducers/users";
+import { setAuthedUser } from "../actions/authedUser";
 import { withRouter } from "../utils/helpers";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { Link } from "react-router-dom";
 import { createUser } from "../actions/users";
-import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import PasswordInput from "./PasswordInput";
@@ -21,6 +16,8 @@ const CreateUser = (props) => {
   const [availableUserName, setAvailableUserName] = useState(true);
 
   const handleChangeUsername = (e) => {
+    // Updates the name and double checks the username does
+    // not yet exit.
     e.preventDefault();
     const newUsername = e.target.value;
     setUsername(newUsername);
