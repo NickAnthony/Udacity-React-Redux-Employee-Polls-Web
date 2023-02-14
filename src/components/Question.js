@@ -5,48 +5,47 @@ import AnsweredOption from "./AnsweredOption";
 import UserAnswer from "./UserAnswer";
 import UserAvatarPicture from "./UserAvatarPicture";
 import VoteOption from "./VoteOption";
+import ErrorPage from "./ErrorPage";
 
-const Question = (props) => {
-  const answeredOptionOne = props.question.optionOne.votes.includes(
-    props.authedUserDetails.id
-  );
-  const answeredOptionTwo = props.question.optionTwo.votes.includes(
-    props.authedUserDetails.id
-  );
-  const answeredQuestion = answeredOptionOne || answeredOptionTwo;
-
-  const totalVotes =
-    props.question.optionOne.votes.length +
-    props.question.optionTwo.votes.length;
-
+const Question = ({
+  dispatch,
+  notFound,
+  question,
+  authedUserDetails,
+  author,
+  answeredOptionOne,
+  answeredOptionTwo,
+  answeredQuestion,
+  totalVotes,
+  router,
+}) => {
   const handleClick = (e) => {
     e.preventDefault();
-    props.dispatch(
-      handleUserVote(
-        props.question.id,
-        props.authedUserDetails.id,
-        e.target.value
-      )
-    );
-    props.router.navigate(`/questions/${props.question.id}`);
+    dispatch(handleUserVote(question.id, authedUserDetails.id, e.target.value));
+    router.navigate(`/questions/${question.id}`);
   };
+
+  // Throw a 404 when question does not exist
+  if (notFound) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className="container">
-      <h3>Poll by {props.question.author}</h3>
-      <UserAvatarPicture avatarURL={props.author.avatarURL} size={120} />
+      <h3>Poll by {question.author}</h3>
+      <UserAvatarPicture avatarURL={author.avatarURL} size={120} />
       <h3>Would You Rather...</h3>
       {answeredQuestion && (
         <div className="container-row">
           <AnsweredOption
-            optionText={props.question.optionOne.text}
-            questionVotes={props.question.optionOne.votes.length}
+            optionText={question.optionOne.text}
+            questionVotes={question.optionOne.votes.length}
             totalVotes={totalVotes}
             chosenByAuthedUser={answeredOptionOne}
           />
           <AnsweredOption
-            optionText={props.question.optionTwo.text}
-            questionVotes={props.question.optionTwo.votes.length}
+            optionText={question.optionTwo.text}
+            questionVotes={question.optionTwo.votes.length}
             totalVotes={totalVotes}
             chosenByAuthedUser={answeredOptionTwo}
           />
@@ -56,20 +55,20 @@ const Question = (props) => {
         <UserAnswer
           answeredOptionOne={answeredOptionOne}
           answeredOptionTwo={answeredOptionTwo}
-          optionOneText={props.question.optionOne.text}
-          optionTwoText={props.question.optionTwo.text}
+          optionOneText={question.optionOne.text}
+          optionTwoText={question.optionTwo.text}
         />
       )}
 
       {!answeredQuestion && (
         <div className="container-row">
           <VoteOption
-            optionText={props.question.optionOne.text}
+            optionText={question.optionOne.text}
             optionNumber={1}
             handleClick={handleClick}
           />
           <VoteOption
-            optionText={props.question.optionTwo.text}
+            optionText={question.optionTwo.text}
             optionNumber={2}
             handleClick={handleClick}
           />
@@ -81,11 +80,38 @@ const Question = (props) => {
 
 const mapStateToProps = ({ questions, authedUser, users }, props) => {
   const { id } = props.router.params;
+  if (questions[id] === undefined) {
+    return {
+      notFound: true,
+      question: null,
+      authedUserDetails: null,
+      author: null,
+      answeredOptionOne: false,
+      answeredOptionTwo: false,
+      answeredQuestion: false,
+      totalVotes: 0,
+    };
+  }
+  const answeredOptionOne = questions[id].optionOne.votes.includes(
+    users[authedUser]
+  );
+  const answeredOptionTwo = questions[id].optionTwo.votes.includes(
+    users[authedUser]
+  );
+  const answeredQuestion = answeredOptionOne || answeredOptionTwo;
+
+  const totalVotes =
+    questions[id].optionOne.votes.length + questions[id].optionTwo.votes.length;
 
   return {
+    notFound: false,
     question: questions[id],
     authedUserDetails: users[authedUser],
     author: users[questions[id].author],
+    answeredOptionOne,
+    answeredOptionTwo,
+    answeredQuestion,
+    totalVotes,
   };
 };
 

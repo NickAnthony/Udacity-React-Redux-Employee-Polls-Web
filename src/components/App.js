@@ -47,6 +47,9 @@ function App(props) {
 }
 
 const mapStateToProps = ({ authedUser, users, questions }) => ({
+  // Loading state is when we have no state!
+  loading:
+    Object.keys(users).length === 0 && Object.keys(questions).length === 0,
   authedUser,
   users,
   questions,
