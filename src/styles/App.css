@@ -401,6 +401,12 @@ th:last-of-type {
   width: 100%;
 }
 
+.login-bypass-button {
+  position: absolute;
+  bottom: 5px;
+  left: 28%;
+}
+
 button {
   display: inline-block;
   padding: 1em 1.2em;

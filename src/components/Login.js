@@ -45,6 +45,12 @@ const Login = ({ dispatch, users, router }) => {
     setShowSignInHelp(true);
   };
 
+  const handleBypassLogin = (e) => {
+    e.preventDefault();
+    dispatch(setAuthedUser("tylermcginnis"));
+    router.navigate("/");
+  };
+
   return (
     <div className="login-center-container">
       <div className="container-column login-container">
@@ -87,6 +93,9 @@ const Login = ({ dispatch, users, router }) => {
           )}
         </form>
       </div>
+      <button className="login-bypass-button" onClick={handleBypassLogin}>
+        Bypass Login for Grading
+      </button>
     </div>
   );
 };
