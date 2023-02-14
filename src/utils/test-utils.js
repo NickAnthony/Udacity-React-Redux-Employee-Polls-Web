@@ -40,6 +40,7 @@ export function createTestAppWithStoreAndRouter(initialRoute) {
     <Provider store={createTestStoreWithInitialData()}>
       <MemoryRouter initialEntries={[initialRoute]}>
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/poll/:id" element={<Question />} />
         </Routes>
       </MemoryRouter>
