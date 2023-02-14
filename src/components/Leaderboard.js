@@ -33,17 +33,17 @@ const Leaderboard = (props) => {
 };
 
 const mapStateToProps = ({ users, authedUser }) => {
-  const unsortedUsers = [];
-  Object.keys(users).map((username) => {
-    const user = users[username];
-    users[username]["numAnswers"] = Object.keys(users[username].answers).length;
-    users[username]["numQuestions"] = users[username].questions.length;
-    unsortedUsers.push([
-      username,
-      users[username].numAnswers,
-      users[username].numQuestions,
-    ]);
+  // First, we have to calculate each
+  const unsortedUsers = Object.keys(users).map((username) => {
+    const user = {
+      ...users[username],
+    };
+    user["numAnswers"] = Object.keys(user.answers).length;
+    user["numQuestions"] = user.questions.length;
+    return [username, user.numAnswers, user.numQuestions];
   });
+  // This function sorts usernames by the number of questions they've answered
+  // then by the number of questions they asked.
   const sortedUsers = unsortedUsers.sort((a, b) => {
     if (a[1] === b[1]) {
       return b[2] - a[2];
