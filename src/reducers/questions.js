@@ -22,7 +22,7 @@ export default function questions(state = {}, action) {
         ...state[action.questionId],
       };
       // Push in the new usernames
-      if (action.voteOption === 1) {
+      if (action.voteOption === "1") {
         question.optionOne.votes.push(action.userId);
       } else {
         question.optionTwo.votes.push(action.userId);

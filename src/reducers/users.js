@@ -19,7 +19,7 @@ export default function users(state = {}, action) {
         ...state[action.userId],
       };
       // Push in the new answers to the answers part of the object.
-      if (action.voteOption === 1) {
+      if (action.voteOption === "1") {
         user.answers[action.questionId] = "optionOne";
       } else {
         user.answers[action.questionId] = "optionTwo";
