@@ -116,7 +116,7 @@ const UserProfile = (props) => {
               </button>
             )}
             {!displayModeEnabled && (
-              <div>
+              <div className="flex-space-between">
                 <button type="submit" data-testid="submit-button">
                   Save Changes
                 </button>

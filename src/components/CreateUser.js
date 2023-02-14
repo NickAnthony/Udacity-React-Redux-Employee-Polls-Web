@@ -88,10 +88,12 @@ const CreateUser = (props) => {
         <UserAvatarPicture avatarURL={avatarURL} size={100} />
         <br />
         <br />
-        <button type="submit" disabled={username === "" || password === ""}>
-          Submit
-        </button>
-        <button onClick={handleNavigateBack}>Back to Login</button>
+        <div className="flex-space-between">
+          <button type="submit" disabled={username === "" || password === ""}>
+            Submit
+          </button>
+          <button onClick={handleNavigateBack}>Back to Login</button>
+        </div>
       </form>
     </div>
   );
