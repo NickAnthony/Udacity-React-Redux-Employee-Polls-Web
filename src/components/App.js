@@ -28,7 +28,6 @@ function App(props) {
     <Fragment>
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
-        {/* // TODO: Remove nav from Login screen  */}
         {props.authedUser && <Nav />}
         {props.loading === true ? null : (
           <Routes>
