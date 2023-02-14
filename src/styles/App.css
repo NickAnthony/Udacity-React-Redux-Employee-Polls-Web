@@ -175,7 +175,7 @@ textarea {
 }
 
 .question-card-name {
-  font-size: calc(4px + 1vmin);
+  font-size: medium;
   font-weight: bold;
   padding: 5px;
   color: #e85a4f;
