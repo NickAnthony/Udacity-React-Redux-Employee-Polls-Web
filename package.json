@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
@@ -13,8 +12,7 @@
     "react-router": "^6.8.0",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
-    "redux-thunk": "^2.4.2",
-    "web-vitals": "^2.1.4"
+    "redux-thunk": "^2.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,6 +41,8 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "jest": "^27.5.1"
+    "@testing-library/user-event": "^13.5.0",
+    "jest": "^27.5.1",
+    "web-vitals": "^2.1.4"
   }
 }

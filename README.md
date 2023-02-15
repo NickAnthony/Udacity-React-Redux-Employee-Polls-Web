@@ -41,13 +41,8 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
 11. The app must contains a navigation bar that is visible on all of the pages.
     The Login page doesn't have the navabr! Please make sure to add it there as
     well, and handle the Login/Logout link based on the user's state.
-12. Current package.json file has some dev/testing packages under dependencies,
-    please move them under devDependencies:
 
-- `"@testing-library/user-event": "^13.5.0",`
-- `"web-vitals": "^2.1.4"`
-
-13. The following two unit tests must be present for `_saveQuestion()`:
+12. The following two unit tests must be present for `_saveQuestion()`:
 
 - An async unit test to verify that the saved question is returned and all
   expected fields are populated when correctly formatted data is passed to the
