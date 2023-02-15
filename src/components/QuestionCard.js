@@ -22,10 +22,9 @@ const QuestionCard = ({ questionId, author, timestamp }) => {
 };
 
 QuestionCard.propTypes = {
-  optionText: PropTypes.string.isRequired,
-  questionVotes: PropTypes.number.isRequired,
-  totalVotes: PropTypes.number.isRequired,
-  chosenByAuthedUser: PropTypes.string,
+  questionId: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
 };
 
 export default QuestionCard;
