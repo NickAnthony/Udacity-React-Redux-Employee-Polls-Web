@@ -9,6 +9,59 @@ Using the provided starter code, you'll build a React/Redux front end for the
 application. We recommend using the [Create React
 App](https://github.com/facebook/create-react-app) to bootstrap the project.
 
+## TODO
+
+1. Please remove all code related to saving data in the localStorage, and don't
+   save anything outside of Redux's state, we are required not to save data in
+   this project, and it ix expected to reset the app to the initial state after
+   refreshing the page.
+2. There should be a way for the user to impersonate/ log in as an existing
+   user. (This could be as simple as having a login box that appears at the root
+   of the application. The user could then select a name from the list of
+   existing users.)
+3. Whenever the user types something in the address bar, the user is asked to
+   log in before the requested page is shown.
+4. The user can alternate between viewing answered and unanswered polls.
+
+- Both types of questions are displayed on the main page! Please add a button or
+  tabs or something, with a state value, to allow the user to alternate between
+  them, and make the "unanswered" polls displayed by default.
+
+5. The unanswered questions are shown by default.
+6. Please order polls by date, newest first. The polls in both categories are
+   arranged from the most recently created (top) to the least recently created
+   (bottom).
+7. Question Answered: Please show the number of voters, along with the
+   percentage. The number of people who voted for that option.
+8. The application asks the user to sign in and shows a 404 page if that poll
+   does not exist
+9. Upon voting in a poll, all of the information of the answered poll is
+   displayed.
+10. The leaderboard doesn't show any numbers!
+11. The app must contains a navigation bar that is visible on all of the pages.
+    The Login page doesn't have the navabr! Please make sure to add it there as
+    well, and handle the Login/Logout link based on the user's state.
+12. Current package.json file has some dev/testing packages under dependencies,
+    please move them under devDependencies:
+
+- `"@testing-library/user-event": "^13.5.0",`
+- `"web-vitals": "^2.1.4"`
+
+13. The following two unit tests must be present for `_saveQuestion()`:
+
+- An async unit test to verify that the saved question is returned and all
+  expected fields are populated when correctly formatted data is passed to the
+  function.
+- An async unit test to verify that an error is returned if incorrect data is
+  passed to the function.
+
+14. The following two unit tests must be present for `_saveQuestionAnswer()`:
+
+- An async unit test to verify that true is returned when correctly formatted
+  data is passed to the function.
+- An async unit test to verify that an error is returned if incorrect data is
+  passed to the function.
+
 ## Data
 
 There are two three of objects stored in our database:
