@@ -23,9 +23,13 @@ const QuestionsLayout = ({ questions, questionIds }) => {
 };
 
 const mapStateToProps = ({ questions }, { questionIds }) => {
+  const sortedQuestions = []
+    .concat(questionIds)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+  console.log(sortedQuestions);
   return {
     questions,
-    questionIds,
+    questionIds: sortedQuestions,
   };
 };
 

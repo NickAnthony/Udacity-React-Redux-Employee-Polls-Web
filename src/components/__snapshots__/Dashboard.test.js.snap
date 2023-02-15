@@ -36,31 +36,12 @@ Object {
               <div
                 class="question-card-name"
               >
-                sarahedo
+                tylermcginnis
               </div>
               <div
                 class="question-card-timestamp"
               >
-                10:21 PM | 6/28/2016
-              </div>
-              <button
-                class="question-card-show-btn"
-              >
-                Show
-              </button>
-            </div>
-            <div
-              class="question-card-container"
-            >
-              <div
-                class="question-card-name"
-              >
-                mtsamis
-              </div>
-              <div
-                class="question-card-timestamp"
-              >
-                3:02 AM | 7/14/2016
+                8:09 AM | 3/15/2017
               </div>
               <button
                 class="question-card-show-btn"
@@ -112,12 +93,31 @@ Object {
               <div
                 class="question-card-name"
               >
-                tylermcginnis
+                mtsamis
               </div>
               <div
                 class="question-card-timestamp"
               >
-                8:09 AM | 3/15/2017
+                3:02 AM | 7/14/2016
+              </div>
+              <button
+                class="question-card-show-btn"
+              >
+                Show
+              </button>
+            </div>
+            <div
+              class="question-card-container"
+            >
+              <div
+                class="question-card-name"
+              >
+                sarahedo
+              </div>
+              <div
+                class="question-card-timestamp"
+              >
+                10:21 PM | 6/28/2016
               </div>
               <button
                 class="question-card-show-btn"
@@ -162,31 +162,12 @@ Object {
             <div
               class="question-card-name"
             >
-              sarahedo
+              tylermcginnis
             </div>
             <div
               class="question-card-timestamp"
             >
-              10:21 PM | 6/28/2016
-            </div>
-            <button
-              class="question-card-show-btn"
-            >
-              Show
-            </button>
-          </div>
-          <div
-            class="question-card-container"
-          >
-            <div
-              class="question-card-name"
-            >
-              mtsamis
-            </div>
-            <div
-              class="question-card-timestamp"
-            >
-              3:02 AM | 7/14/2016
+              8:09 AM | 3/15/2017
             </div>
             <button
               class="question-card-show-btn"
@@ -238,12 +219,31 @@ Object {
             <div
               class="question-card-name"
             >
-              tylermcginnis
+              mtsamis
             </div>
             <div
               class="question-card-timestamp"
             >
-              8:09 AM | 3/15/2017
+              3:02 AM | 7/14/2016
+            </div>
+            <button
+              class="question-card-show-btn"
+            >
+              Show
+            </button>
+          </div>
+          <div
+            class="question-card-container"
+          >
+            <div
+              class="question-card-name"
+            >
+              sarahedo
+            </div>
+            <div
+              class="question-card-timestamp"
+            >
+              10:21 PM | 6/28/2016
             </div>
             <button
               class="question-card-show-btn"

@@ -21,11 +21,7 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
    existing users.)
 3. Whenever the user types something in the address bar, the user is asked to
    log in before the requested page is shown.
-
-4. Please order polls by date, newest first. The polls in both categories are
-   arranged from the most recently created (top) to the least recently created
-   (bottom).
-5. The application asks the user to sign in and shows a 404 page if that poll
+4. The application asks the user to sign in and shows a 404 page if that poll
    does not exist
 
 ## Data
