@@ -37,7 +37,7 @@ const Nav = ({ authedUser, authedUserAvatarURL }) => {
           </div>
         )}
         {authedUser && (
-          <Link to="/logout" className="nav-item">
+          <Link to="/login" className="nav-item">
             Logout
           </Link>
         )}

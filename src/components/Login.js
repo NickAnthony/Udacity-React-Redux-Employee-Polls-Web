@@ -93,7 +93,7 @@ const Login = ({ dispatch, users, router, location }) => {
 
 const mapStateToProps = ({ users }, props) => {
   let location = props.router.location.pathname;
-  if (location === "/logout" || location === "/login") {
+  if (location === "/login") {
     location = "/";
   }
   return {
