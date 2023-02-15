@@ -20,10 +20,10 @@ Object {
           Would You Rather...
         </h3>
         <div
-          class="container-row"
+          class="container-row-start"
         >
           <div
-            class="container-column question-option-container"
+            class="container-column question-option-container green-bold-outline"
             data-testid="answered-option"
           >
             <span
@@ -32,15 +32,24 @@ Object {
               Build our new application with Javascript
             </span>
             <span
-              class="question-answer-percentage winning-vote"
+              class="question-answer-percentage"
             >
-              Votes: 
+              Voting: 
               100
-              %
+              % (
+              2
+               out of 
+              2
+              )
+            </span>
+            <span
+              class="green-background"
+            >
+              "Your vote"
             </span>
           </div>
           <div
-            class="container-column question-option-container"
+            class="container-column question-option-container "
             data-testid="answered-option"
           >
             <span
@@ -49,20 +58,17 @@ Object {
               Build our new application with Typescript
             </span>
             <span
-              class="question-answer-percentage losing-vote"
+              class="question-answer-percentage"
             >
-              Votes: 
+              Voting: 
               0
-              %
+              % (
+              0
+               out of 
+              2
+              )
             </span>
           </div>
-        </div>
-        <div
-          class="user-answer"
-          data-testid="user-answer"
-        >
-          You voted for... 
-          Build our new application with Javascript
         </div>
       </div>
     </div>
@@ -83,10 +89,10 @@ Object {
         Would You Rather...
       </h3>
       <div
-        class="container-row"
+        class="container-row-start"
       >
         <div
-          class="container-column question-option-container"
+          class="container-column question-option-container green-bold-outline"
           data-testid="answered-option"
         >
           <span
@@ -95,15 +101,24 @@ Object {
             Build our new application with Javascript
           </span>
           <span
-            class="question-answer-percentage winning-vote"
+            class="question-answer-percentage"
           >
-            Votes: 
+            Voting: 
             100
-            %
+            % (
+            2
+             out of 
+            2
+            )
+          </span>
+          <span
+            class="green-background"
+          >
+            "Your vote"
           </span>
         </div>
         <div
-          class="container-column question-option-container"
+          class="container-column question-option-container "
           data-testid="answered-option"
         >
           <span
@@ -112,20 +127,17 @@ Object {
             Build our new application with Typescript
           </span>
           <span
-            class="question-answer-percentage losing-vote"
+            class="question-answer-percentage"
           >
-            Votes: 
+            Voting: 
             0
-            %
+            % (
+            0
+             out of 
+            2
+            )
           </span>
         </div>
-      </div>
-      <div
-        class="user-answer"
-        data-testid="user-answer"
-      >
-        You voted for... 
-        Build our new application with Javascript
       </div>
     </div>
   </div>,

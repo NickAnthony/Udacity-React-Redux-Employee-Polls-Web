@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { withRouter } from "../utils/helpers";
 import { handleUserVote } from "../actions/shared";
 import AnsweredOption from "./AnsweredOption";
-import UserAnswer from "./UserAnswer";
 import UserAvatarPicture from "./UserAvatarPicture";
 import VoteOption from "./VoteOption";
 import ErrorPage from "./ErrorPage";
@@ -34,7 +33,7 @@ const Question = ({
       <UserAvatarPicture avatarURL={author.avatarURL} size={120} />
       <h3>Would You Rather...</h3>
       {answeredQuestion && (
-        <div className="container-row">
+        <div className="container-row-start">
           <AnsweredOption
             optionText={question.optionOne.text}
             questionVotes={question.optionOne.votes.length}
@@ -48,14 +47,6 @@ const Question = ({
             chosenByAuthedUser={answeredOptionTwo}
           />
         </div>
-      )}
-      {answeredQuestion && (
-        <UserAnswer
-          answeredOptionOne={answeredOptionOne}
-          answeredOptionTwo={answeredOptionTwo}
-          optionOneText={question.optionOne.text}
-          optionTwoText={question.optionTwo.text}
-        />
       )}
 
       {!answeredQuestion && (

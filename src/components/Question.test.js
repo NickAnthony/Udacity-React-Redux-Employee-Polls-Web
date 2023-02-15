@@ -19,7 +19,6 @@ describe("Question", () => {
       component.queryByTestId("vote-option-button")
     ).not.toBeInTheDocument();
     expect(component.getAllByTestId("answered-option").length).toEqual(2);
-    expect(component.getByTestId("user-answer")).toBeInTheDocument();
   });
 
   it("will match the question snapshot.", () => {

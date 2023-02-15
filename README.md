@@ -31,15 +31,11 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
 6. Please order polls by date, newest first. The polls in both categories are
    arranged from the most recently created (top) to the least recently created
    (bottom).
-7. Question Answered: Please show the number of voters, along with the
-   percentage. The number of people who voted for that option.
-8. The application asks the user to sign in and shows a 404 page if that poll
+7. The application asks the user to sign in and shows a 404 page if that poll
    does not exist
-9. Upon voting in a poll, all of the information of the answered poll is
-   displayed.
-10. The app must contains a navigation bar that is visible on all of the pages.
-    The Login page doesn't have the navabr! Please make sure to add it there as
-    well, and handle the Login/Logout link based on the user's state.
+8. The app must contains a navigation bar that is visible on all of the pages.
+   The Login page doesn't have the navabr! Please make sure to add it there as
+   well, and handle the Login/Logout link based on the user's state.
 
 ## Data
 
