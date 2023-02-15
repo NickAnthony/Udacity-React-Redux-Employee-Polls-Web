@@ -15,13 +15,9 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
    save anything outside of Redux's state, we are required not to save data in
    this project, and it ix expected to reset the app to the initial state after
    refreshing the page.
-2. There should be a way for the user to impersonate/ log in as an existing
-   user. (This could be as simple as having a login box that appears at the root
-   of the application. The user could then select a name from the list of
-   existing users.)
-3. Whenever the user types something in the address bar, the user is asked to
+2. Whenever the user types something in the address bar, the user is asked to
    log in before the requested page is shown.
-4. The application asks the user to sign in and shows a 404 page if that poll
+3. The application asks the user to sign in and shows a 404 page if that poll
    does not exist
 
 ## Data
