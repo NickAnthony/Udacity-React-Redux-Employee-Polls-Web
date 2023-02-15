@@ -21,17 +21,11 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
    existing users.)
 3. Whenever the user types something in the address bar, the user is asked to
    log in before the requested page is shown.
-4. The user can alternate between viewing answered and unanswered polls.
 
-- Both types of questions are displayed on the main page! Please add a button or
-  tabs or something, with a state value, to allow the user to alternate between
-  them, and make the "unanswered" polls displayed by default.
-
-5. The unanswered questions are shown by default.
-6. Please order polls by date, newest first. The polls in both categories are
+4. Please order polls by date, newest first. The polls in both categories are
    arranged from the most recently created (top) to the least recently created
    (bottom).
-7. The application asks the user to sign in and shows a 404 page if that poll
+5. The application asks the user to sign in and shows a 404 page if that poll
    does not exist
 
 ## Data
@@ -134,8 +128,9 @@ There are many components, here is how each page breaks down.
 
 - `Nav`
 - `Dashboard`
-  - `QuestionLayout`
-    - `QuestionCard`
+  - `QuestionsTabLayout`
+    - `QuestionLayout`
+      - `QuestionCard`
 - `CreateQuestion`
 - `Leaderboard`
 - `Question`
@@ -172,6 +167,12 @@ Home page that all questions, divided into answered and unanswered depending on
 the authenticated user.
 
 Uses two `QuestionLayout`s to display each set of questions.
+
+#### `QuestionsTabLayout`
+
+Represents a tabbed layout of questions. You can pass a list of tabs and the
+questions to show per tab. It will dynamically update and show the right
+questions per tab.
 
 #### `QuestionLayout`
 
@@ -213,10 +214,6 @@ the state.
 
 Dislays an answered option for a question. It shows the percentage of votes for
 this option.
-
-#### `UserAnswer`
-
-Displays the answer that a user chose.
 
 #### `ErrorPage`
 
