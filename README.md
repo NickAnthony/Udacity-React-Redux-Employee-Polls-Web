@@ -42,21 +42,6 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
     The Login page doesn't have the navabr! Please make sure to add it there as
     well, and handle the Login/Logout link based on the user's state.
 
-12. The following two unit tests must be present for `_saveQuestion()`:
-
-- An async unit test to verify that the saved question is returned and all
-  expected fields are populated when correctly formatted data is passed to the
-  function.
-- An async unit test to verify that an error is returned if incorrect data is
-  passed to the function.
-
-14. The following two unit tests must be present for `_saveQuestionAnswer()`:
-
-- An async unit test to verify that true is returned when correctly formatted
-  data is passed to the function.
-- An async unit test to verify that an error is returned if incorrect data is
-  passed to the function.
-
 ## Data
 
 There are two three of objects stored in our database:
