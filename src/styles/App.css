@@ -79,6 +79,7 @@ p {
 }
 
 textarea,
+select,
 input {
   width: 100%;
   border-style: solid;
@@ -89,6 +90,7 @@ input {
   box-sizing: border-box;
 }
 textarea,
+select,
 input:focus {
   outline-color: #e98074;
 }

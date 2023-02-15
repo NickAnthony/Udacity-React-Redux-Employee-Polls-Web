@@ -33,7 +33,7 @@ describe("Login", () => {
     expect(component.getByTestId("signin-failed-help")).toBeInTheDocument();
   });
 
-  it("will not allow submit until both fields are entered.", () => {
+  it("will update the UI when you click on the impersonate button.", () => {
     var component = render(
       <Provider store={createTestStore()}>
         <MemoryRouter>
@@ -42,31 +42,17 @@ describe("Login", () => {
       </Provider>
     );
 
-    // Get the submit button
-    var submitButton = component.getByTestId("submit-button");
-    // Check the button is disabled at the start
-    expect(submitButton).toBeDisabled();
+    // Verify we don't have the username select field, but we do have
+    // the password field.
+    expect(component.queryByTestId("username-select")).not.toBeInTheDocument();
+    expect(component.getByTestId("password-input")).toBeInTheDocument();
 
-    // Add input to the username field
-    var usernameInput = component.getByTestId("username-input");
-    fireEvent.change(usernameInput, { target: { value: "testusername" } });
-    // Check the button is disabled with only username
-    expect(submitButton).toBeDisabled();
+    // Get the impersonate button
+    var impersonateButton = component.getByTestId("impersonate-button");
+    fireEvent.click(impersonateButton);
 
-    // Add input to the password field
-    var passwordInput = component.getByTestId("password-input");
-    fireEvent.change(passwordInput, {
-      target: { value: "invalidpassword" },
-    });
-
-    // Check the button is enabled with both username and password
-    expect(submitButton).not.toBeDisabled();
-
-    // Reset the password field and check the submit submit button is disabled
-    // Check the button is disabled at the start
-    fireEvent.change(passwordInput, {
-      target: { value: "" },
-    });
-    expect(submitButton).toBeDisabled();
+    // Verify we now have the username select buttons and no password field
+    expect(component.getByTestId("username-select")).toBeInTheDocument();
+    expect(component.queryByTestId("password-input")).not.toBeInTheDocument();
   });
 });
