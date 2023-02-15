@@ -6,7 +6,7 @@ import { setAuthedUser } from "../actions/authedUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import PasswordInput from "./PasswordInput";
 
-const Login = ({ dispatch, users, userIds, router, location }) => {
+const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignInHelp, setShowSignInHelp] = useState(false);
@@ -40,7 +40,7 @@ const Login = ({ dispatch, users, userIds, router, location }) => {
       dispatch(showLoading());
       dispatch(setAuthedUser(username));
       dispatch(hideLoading());
-      router.navigate(location);
+      router.navigate(redirectTo);
       setShowSignInHelp(false);
     }
     // Sign in failed, show help.
@@ -126,14 +126,16 @@ const Login = ({ dispatch, users, userIds, router, location }) => {
 };
 
 const mapStateToProps = ({ users }, props) => {
-  let location = props.router.location.pathname;
-  if (location === "/login") {
-    location = "/";
+  let redirectTo = props.router.location.state
+    ? props.router.location.state.redirectTo
+    : "/";
+  if (redirectTo === "/login") {
+    redirectTo = "/";
   }
   return {
     users,
     userIds: Object.keys(users),
-    location: location,
+    redirectTo: redirectTo,
   };
 };
 

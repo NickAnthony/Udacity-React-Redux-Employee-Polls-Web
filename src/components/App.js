@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useEffect, Fragment } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
+import { withRouter } from "../utils/helpers";
 import CreateQuestion from "./CreateQuestion";
 import CreateUser from "./CreateUser";
 import Dashboard from "./Dashboard";
@@ -19,8 +20,9 @@ function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
     // If no one is logged in, we want to return to the login screen.
+    // Then we can redirect to the page requested.
     if (!props.authedUser) {
-      navigate("/login");
+      navigate("/login", { state: { redirectTo: props.location } });
     }
   }, []);
 
@@ -46,13 +48,14 @@ function App(props) {
   );
 }
 
-const mapStateToProps = ({ authedUser, users, questions }) => ({
+const mapStateToProps = ({ authedUser, users, questions }, props) => ({
   // Loading state is when we have no state!
   loading:
     Object.keys(users).length === 0 && Object.keys(questions).length === 0,
   authedUser,
   users,
   questions,
+  location: props.router.location.pathname,
 });
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
