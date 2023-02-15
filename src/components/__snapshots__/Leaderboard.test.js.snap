@@ -1,0 +1,466 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Leaderboard will match the snapshot for the Leaderboard. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="container"
+      >
+        <table>
+          <tbody>
+            <tr
+              class="leaderboard-header"
+            >
+              <th>
+                User
+              </th>
+              <th>
+                Answered
+              </th>
+              <th>
+                Created
+              </th>
+            </tr>
+            <tr
+              data-testid="user-row"
+            >
+              <td
+                class="profile-container"
+              >
+                <div
+                  class="profile-avatar"
+                  style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+                />
+                <div
+                  class="profile-name-container"
+                >
+                  <span
+                    class="profile-name"
+                  >
+                    Sarah Edo
+                  </span>
+                  <span
+                    class="profile-username"
+                  >
+                    sarahedo
+                  </span>
+                </div>
+              </td>
+              <td
+                data-testid="user-number-answered"
+              >
+                4
+              </td>
+              <td
+                data-testid="user-number-created"
+              >
+                2
+              </td>
+            </tr>
+            <tr
+              data-testid="user-row"
+            >
+              <td
+                class="profile-container"
+              >
+                <div
+                  class="profile-avatar"
+                  style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+                />
+                <div
+                  class="profile-name-container"
+                >
+                  <span
+                    class="profile-name"
+                  >
+                    Mike Tsamis
+                  </span>
+                  <span
+                    class="profile-username"
+                  >
+                    mtsamis
+                  </span>
+                </div>
+              </td>
+              <td
+                data-testid="user-number-answered"
+              >
+                3
+              </td>
+              <td
+                data-testid="user-number-created"
+              >
+                2
+              </td>
+            </tr>
+            <tr
+              data-testid="user-row"
+            >
+              <td
+                class="profile-container"
+              >
+                <div
+                  class="profile-avatar"
+                  style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+                />
+                <div
+                  class="profile-name-container"
+                >
+                  <span
+                    class="profile-name"
+                  >
+                    Tyler McGinnis
+                  </span>
+                  <span
+                    class="profile-username"
+                  >
+                    tylermcginnis
+                  </span>
+                </div>
+              </td>
+              <td
+                data-testid="user-number-answered"
+              >
+                2
+              </td>
+              <td
+                data-testid="user-number-created"
+              >
+                2
+              </td>
+            </tr>
+            <tr
+              data-testid="user-row"
+            >
+              <td
+                class="profile-container"
+              >
+                <div
+                  class="profile-avatar"
+                  style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+                />
+                <div
+                  class="profile-name-container"
+                >
+                  <span
+                    class="profile-name"
+                  >
+                    Zenobia Oshikanlu
+                  </span>
+                  <span
+                    class="profile-username"
+                  >
+                    zoshikanlu
+                  </span>
+                </div>
+              </td>
+              <td
+                data-testid="user-number-answered"
+              >
+                1
+              </td>
+              <td
+                data-testid="user-number-created"
+              >
+                0
+              </td>
+            </tr>
+            <tr
+              data-testid="user-row"
+            >
+              <td
+                class="profile-container"
+              >
+                <div
+                  class="profile-avatar"
+                  style="background-image: url(https://i.redd.it/ofmlty7h86fa1.jpg); height: 40px; width: 40px;"
+                />
+                <div
+                  class="profile-name-container"
+                >
+                  <span
+                    class="profile-name"
+                  >
+                    Nick Anthony
+                  </span>
+                  <span
+                    class="profile-username"
+                  >
+                    nickanthony
+                  </span>
+                </div>
+              </td>
+              <td
+                data-testid="user-number-answered"
+              >
+                1
+              </td>
+              <td
+                data-testid="user-number-created"
+              >
+                0
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="container"
+    >
+      <table>
+        <tbody>
+          <tr
+            class="leaderboard-header"
+          >
+            <th>
+              User
+            </th>
+            <th>
+              Answered
+            </th>
+            <th>
+              Created
+            </th>
+          </tr>
+          <tr
+            data-testid="user-row"
+          >
+            <td
+              class="profile-container"
+            >
+              <div
+                class="profile-avatar"
+                style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+              />
+              <div
+                class="profile-name-container"
+              >
+                <span
+                  class="profile-name"
+                >
+                  Sarah Edo
+                </span>
+                <span
+                  class="profile-username"
+                >
+                  sarahedo
+                </span>
+              </div>
+            </td>
+            <td
+              data-testid="user-number-answered"
+            >
+              4
+            </td>
+            <td
+              data-testid="user-number-created"
+            >
+              2
+            </td>
+          </tr>
+          <tr
+            data-testid="user-row"
+          >
+            <td
+              class="profile-container"
+            >
+              <div
+                class="profile-avatar"
+                style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+              />
+              <div
+                class="profile-name-container"
+              >
+                <span
+                  class="profile-name"
+                >
+                  Mike Tsamis
+                </span>
+                <span
+                  class="profile-username"
+                >
+                  mtsamis
+                </span>
+              </div>
+            </td>
+            <td
+              data-testid="user-number-answered"
+            >
+              3
+            </td>
+            <td
+              data-testid="user-number-created"
+            >
+              2
+            </td>
+          </tr>
+          <tr
+            data-testid="user-row"
+          >
+            <td
+              class="profile-container"
+            >
+              <div
+                class="profile-avatar"
+                style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+              />
+              <div
+                class="profile-name-container"
+              >
+                <span
+                  class="profile-name"
+                >
+                  Tyler McGinnis
+                </span>
+                <span
+                  class="profile-username"
+                >
+                  tylermcginnis
+                </span>
+              </div>
+            </td>
+            <td
+              data-testid="user-number-answered"
+            >
+              2
+            </td>
+            <td
+              data-testid="user-number-created"
+            >
+              2
+            </td>
+          </tr>
+          <tr
+            data-testid="user-row"
+          >
+            <td
+              class="profile-container"
+            >
+              <div
+                class="profile-avatar"
+                style="background-image: url(DefaultAvatar.png); height: 40px; width: 40px;"
+              />
+              <div
+                class="profile-name-container"
+              >
+                <span
+                  class="profile-name"
+                >
+                  Zenobia Oshikanlu
+                </span>
+                <span
+                  class="profile-username"
+                >
+                  zoshikanlu
+                </span>
+              </div>
+            </td>
+            <td
+              data-testid="user-number-answered"
+            >
+              1
+            </td>
+            <td
+              data-testid="user-number-created"
+            >
+              0
+            </td>
+          </tr>
+          <tr
+            data-testid="user-row"
+          >
+            <td
+              class="profile-container"
+            >
+              <div
+                class="profile-avatar"
+                style="background-image: url(https://i.redd.it/ofmlty7h86fa1.jpg); height: 40px; width: 40px;"
+              />
+              <div
+                class="profile-name-container"
+              >
+                <span
+                  class="profile-name"
+                >
+                  Nick Anthony
+                </span>
+                <span
+                  class="profile-username"
+                >
+                  nickanthony
+                </span>
+              </div>
+            </td>
+            <td
+              data-testid="user-number-answered"
+            >
+              1
+            </td>
+            <td
+              data-testid="user-number-created"
+            >
+              0
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

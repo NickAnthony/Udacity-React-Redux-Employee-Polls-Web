@@ -37,8 +37,7 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
    does not exist
 9. Upon voting in a poll, all of the information of the answered poll is
    displayed.
-10. The leaderboard doesn't show any numbers!
-11. The app must contains a navigation bar that is visible on all of the pages.
+10. The app must contains a navigation bar that is visible on all of the pages.
     The Login page doesn't have the navabr! Please make sure to add it there as
     well, and handle the Login/Logout link based on the user's state.
 

@@ -5,28 +5,30 @@ const Leaderboard = ({ sortedUsers, users }) => {
   return (
     <div className="container">
       <table>
-        <tr className="leaderboard-header">
-          <th>User</th>
-          <th>Answered</th>
-          <th>Created</th>
-        </tr>
-        {sortedUsers.map((sortedUser) => {
-          const username = sortedUser[0];
-          const user = users[username];
-          return (
-            <tr key={username}>
-              <td className="profile-container">
-                <UserAvatarPicture avatarURL={user.avatarURL} size={40} />
-                <div className="profile-name-container">
-                  <span className="profile-name">{user.name}</span>
-                  <span className="profile-username">{username}</span>
-                </div>
-              </td>
-              <td>{user.numAnswers}</td>
-              <td>{user.numQuestions}</td>
-            </tr>
-          );
-        })}
+        <tbody>
+          <tr className="leaderboard-header">
+            <th>User</th>
+            <th>Answered</th>
+            <th>Created</th>
+          </tr>
+          {sortedUsers.map((sortedUser) => {
+            const username = sortedUser[0];
+            const user = users[username];
+            return (
+              <tr key={username} data-testid="user-row">
+                <td className="profile-container">
+                  <UserAvatarPicture avatarURL={user.avatarURL} size={40} />
+                  <div className="profile-name-container">
+                    <span className="profile-name">{user.name}</span>
+                    <span className="profile-username">{username}</span>
+                  </div>
+                </td>
+                <td data-testid="user-number-answered">{sortedUser[1]}</td>
+                <td data-testid="user-number-created">{sortedUser[2]}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
