@@ -1,23 +1,28 @@
 import { connect } from "react-redux";
-import QuestionsLayout from "./QuestionsLayout";
+import QuestionsTabLayout from "./QuestionsTabLayout";
 
 const Dashboard = ({ questionIds, questions, authedUser }) => {
-  const newQuestionIds = questionIds.filter(
+  const answeredQuestionIds = questionIds.filter(
     (questionId) =>
       !questions[questionId].optionOne.votes.includes(authedUser) &&
       !questions[questionId].optionTwo.votes.includes(authedUser)
   );
 
-  const doneQuestionIds = questionIds.filter(
+  const unansweredQuestionIds = questionIds.filter(
     (questionId) =>
       questions[questionId].optionOne.votes.includes(authedUser) ||
       questions[questionId].optionTwo.votes.includes(authedUser)
   );
 
   return (
-    <div className="container">
-      <QuestionsLayout title={"New Questions"} questionIds={newQuestionIds} />
-      <QuestionsLayout title={"Done"} questionIds={doneQuestionIds} />
+    <div className="container dashboard-container">
+      <QuestionsTabLayout
+        tabs={["Unanswered Questions", "Answered Questions"]}
+        questionsPerTab={{
+          0: answeredQuestionIds,
+          1: unansweredQuestionIds,
+        }}
+      />
     </div>
   );
 };

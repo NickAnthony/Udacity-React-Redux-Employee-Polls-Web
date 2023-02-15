@@ -28,10 +28,10 @@ const Question = ({
   }
 
   return (
-    <div className="container">
+    <div className="container question-layout-container positive-top-margin">
       <h3>Poll by {question.author}</h3>
       <UserAvatarPicture avatarURL={author.avatarURL} size={120} />
-      <h3>Would You Rather...</h3>
+      <h2>Would You Rather...</h2>
       {answeredQuestion && (
         <div className="container-row-start">
           <AnsweredOption

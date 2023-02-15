@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { useState } from "react";
-import QuestionsLayout from "./QuestionsLayout";
+import QuestionsTabLayout from "./QuestionsTabLayout";
 import { updateUser } from "../actions/users";
 import UserAvatarPicture from "./UserAvatarPicture";
 
@@ -130,9 +130,9 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
         </div>
       </div>
       <div className="user-profile-questions-container">
-        <QuestionsLayout
-          title={"My Questions"}
-          questionIds={authedUserDetails.questions}
+        <QuestionsTabLayout
+          tabs={["My Questions"]}
+          questionsPerTab={{ 0: authedUserDetails.questions }}
         />
       </div>
     </div>

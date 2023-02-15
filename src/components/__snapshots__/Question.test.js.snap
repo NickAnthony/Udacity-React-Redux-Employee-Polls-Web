@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="container"
+        class="container question-layout-container positive-top-margin"
       >
         <h3>
           Poll by 
@@ -16,9 +16,9 @@ Object {
           class="profile-avatar"
           style="background-image: url(DefaultAvatar.png); height: 120px; width: 120px;"
         />
-        <h3>
+        <h2>
           Would You Rather...
-        </h3>
+        </h2>
         <div
           class="container-row-start"
         >
@@ -75,7 +75,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="container"
+      class="container question-layout-container positive-top-margin"
     >
       <h3>
         Poll by 
@@ -85,9 +85,9 @@ Object {
         class="profile-avatar"
         style="background-image: url(DefaultAvatar.png); height: 120px; width: 120px;"
       />
-      <h3>
+      <h2>
         Would You Rather...
-      </h3>
+      </h2>
       <div
         class="container-row-start"
       >

@@ -52,38 +52,41 @@ const CreateQuestion = ({ dispatch, authedUser }) => {
   };
 
   return (
-    <div className="question-layout-container new-question-container">
+    <div className="positive-top-margin">
       <div className="question-layout-title">Create Your Own Poll</div>
-      <h4>Would You Rather...</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="container-row">
-          <div className="container-column">
-            <p>First Option</p>
-            <textarea
-              type="text"
-              value={firstOption}
-              onChange={handleFirstOptionChange}
-            />
+
+      <div className="question-layout-container new-question-container">
+        <h2>Would You Rather...</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="container-row">
+            <div className="container-column">
+              <p>First Option</p>
+              <textarea
+                type="text"
+                value={firstOption}
+                onChange={handleFirstOptionChange}
+              />
+            </div>
+            <div className="container-column">
+              <p>Second Option</p>
+              <textarea
+                type="text"
+                value={secondOption}
+                onChange={handleSecondOptionChange}
+              />
+            </div>
           </div>
+          <br />
           <div className="container-column">
-            <p>Second Option</p>
-            <textarea
-              type="text"
-              value={secondOption}
-              onChange={handleSecondOptionChange}
-            />
+            <button
+              type="submit"
+              disabled={firstOption === "" || secondOption === ""}
+            >
+              Submit
+            </button>
           </div>
-        </div>
-        <br />
-        <div className="container-column">
-          <button
-            type="submit"
-            disabled={firstOption === "" || secondOption === ""}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
