@@ -28,7 +28,7 @@ function App(props) {
     <Fragment>
       <LoadingBar style={{ backgroundColor: "#e98074" }} />
       <div className="container">
-        {props.authedUser && <Nav />}
+        <Nav />
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />

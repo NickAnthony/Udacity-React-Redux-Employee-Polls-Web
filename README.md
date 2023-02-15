@@ -33,9 +33,6 @@ App](https://github.com/facebook/create-react-app) to bootstrap the project.
    (bottom).
 7. The application asks the user to sign in and shows a 404 page if that poll
    does not exist
-8. The app must contains a navigation bar that is visible on all of the pages.
-   The Login page doesn't have the navabr! Please make sure to add it there as
-   well, and handle the Login/Logout link based on the user's state.
 
 ## Data
 
