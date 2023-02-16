@@ -8,7 +8,6 @@ const AnsweredOption = ({
   totalVotes,
   chosenByAuthedUser,
 }) => {
-  const winning = questionVotes / totalVotes >= 0.5;
   return (
     <div
       className={`container-column question-option-container ${

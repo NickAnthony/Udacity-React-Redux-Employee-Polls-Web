@@ -39,6 +39,8 @@ const QuestionsTabLayout = ({ tabs, questionsPerTab }) => {
           return (
             <QuestionsLayout key={index} questionIds={questionsPerTab[index]} />
           );
+        } else {
+          return null;
         }
       })}
     </div>
