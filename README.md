@@ -1,5 +1,9 @@
 # Employee Polls Project
 
+You can head to https://nickanthony-employee-web-polls.herokuapp.com/ to check out a live version of this project!
+
+## Project Background
+
 The `_DATA.js` file represents a fake database and methods that let you access
 the data. The only thing you need to edit in the ` _DATA.js` file is the value
 of `avatarURL`. Each user should have an avatar, so you’ll need to add the path
