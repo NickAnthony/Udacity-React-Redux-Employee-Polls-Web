@@ -6,7 +6,7 @@ export var users = {
     avatarURL: null,
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
-      "6ni6ok3ym7mf1p33lnez": "optionOne",
+      "6ni6ok3ym7mf1p33lnez": "optionTwo",
       am8ehyc8byjqgar0jgpub9: "optionTwo",
       loxhs1bqm25b708cmbf3g: "optionTwo",
     },
@@ -76,11 +76,11 @@ export var questions = {
     author: "mtsamis",
     timestamp: 1468479767190,
     optionOne: {
-      votes: [],
+      votes: ["mtsamis"],
       text: "hire more frontend developers",
     },
     optionTwo: {
-      votes: ["mtsamis", "sarahedo"],
+      votes: ["sarahedo"],
       text: "hire more backend developers",
     },
   },
