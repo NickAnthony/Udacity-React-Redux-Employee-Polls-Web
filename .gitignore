@@ -39,3 +39,6 @@ packages/react-devtools-timeline/dist
 
 # Ignore the venv
 employeepollsvenv/
+
+# Ignore python's cache
+__pycache__
