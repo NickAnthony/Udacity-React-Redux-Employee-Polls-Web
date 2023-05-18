@@ -43,9 +43,7 @@ const Nav = ({ authedUser, authedUserAvatarURL }) => {
         )}
 
         <div className="nav-website-title">
-          <i>
-            <FaPoll style={{ marginRight: 4 }} />
-          </i>
+          <FaPoll />
           <span>Web Polls</span>
         </div>
       </div>

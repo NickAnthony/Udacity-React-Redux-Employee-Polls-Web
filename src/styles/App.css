@@ -490,8 +490,10 @@ button:hover {
 
 .nav-website-title {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 2px;
