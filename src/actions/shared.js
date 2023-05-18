@@ -13,9 +13,10 @@ import {
 } from "./questions";
 import axios from "axios";
 
-export const API_URL = "http://127.0.0.1:3001";
+export const API_URL = process.env.REACT_APP_API_URL;
 
 export function handleInitialData() {
+  console.log(`API_URL: ${API_URL}`);
   return (dispatch) => {
     dispatch(showLoading());
     return axios

@@ -42,3 +42,7 @@ employeepollsvenv/
 
 # Ignore python's cache
 __pycache__
+
+# Ignore environment variables
+.env
+.env.local
