@@ -1,24 +1,38 @@
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { _getUsers } from "../utils/_DATA";
-import { _getQuestions } from "../utils/_DATA";
-import { addAnswerToUser, addQuestionToUser, receiveUsers } from "./users";
-import { addQuestion, addUserToAnswer, receiveQuestions } from "./questions";
+import {
+  addAnswerToUser,
+  addQuestionToUser,
+  receiveUsers,
+  removeAnswerFromUser,
+} from "./users";
+import {
+  addQuestion,
+  addUserToAnswer,
+  receiveQuestions,
+  removeUserFromAnswer,
+} from "./questions";
+import axios from "axios";
+
+export const API_URL = "http://127.0.0.1:3001";
 
 export function handleInitialData() {
   return (dispatch) => {
     dispatch(showLoading());
-    return getInitialData().then(({ users, questions }) => {
-      dispatch(receiveUsers(users));
-      dispatch(receiveQuestions(questions));
-      dispatch(hideLoading());
-    });
+    return axios
+      .all([axios.get(`${API_URL}/users`), axios.get(`${API_URL}/questions`)])
+      .then(
+        axios.spread((usersRes, questionsRes) => {
+          dispatch(receiveUsers(usersRes.data.users));
+          dispatch(receiveQuestions(questionsRes.data.questions));
+        })
+      )
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        dispatch(hideLoading());
+      });
   };
-}
-
-async function getInitialData() {
-  const users = await _getUsers();
-  const questions = await _getQuestions();
-  return { users, questions };
 }
 
 export function handleUserVote(questionId, userId, voteOption) {
@@ -26,6 +40,15 @@ export function handleUserVote(questionId, userId, voteOption) {
     dispatch(showLoading());
     dispatch(addAnswerToUser(questionId, userId, voteOption));
     dispatch(addUserToAnswer(questionId, userId, voteOption));
+    dispatch(hideLoading());
+  };
+}
+
+export function handleRemoveUserVote(questionId, userId, voteOption) {
+  return (dispatch) => {
+    dispatch(showLoading());
+    dispatch(removeAnswerFromUser(questionId, userId, voteOption));
+    dispatch(removeUserFromAnswer(questionId, userId, voteOption));
     dispatch(hideLoading());
   };
 }

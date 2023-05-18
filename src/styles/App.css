@@ -74,7 +74,8 @@ h3,
 h4 {
   color: #e85a4f;
 }
-p {
+p,
+label {
   color: #494846;
 }
 
@@ -477,7 +478,6 @@ button:hover {
 
 .create-user-profile-container {
   width: 500px;
-
   margin: 20px;
   padding: 50px;
   border-style: solid;
@@ -500,4 +500,39 @@ button:hover {
   background-color: #e98074;
   padding: 5px;
   border-radius: 0.1em;
+}
+
+.Modal {
+  position: relative;
+  background-color: #f4f3ed;
+  width: 50%;
+  height: fit-content;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.modal-form {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

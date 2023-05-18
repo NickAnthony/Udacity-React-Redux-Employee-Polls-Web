@@ -5,6 +5,8 @@ import { withRouter } from "../utils/helpers";
 import { setAuthedUser } from "../actions/authedUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import PasswordInput from "./PasswordInput";
+import axios from "axios";
+import { API_URL } from "../actions/shared";
 
 const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
   const [username, setUsername] = useState("");
@@ -26,7 +28,7 @@ const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // If the username does not exist, return.
     if (!users[username]) {
@@ -36,15 +38,40 @@ const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
     // Username exists, let's check the password.
     // Note that we won't check an empty password!  This is according
     // to project specs.
-    if (impersonate || users[username].password === password) {
+    if (impersonate) {
       dispatch(showLoading());
       dispatch(setAuthedUser(username));
       dispatch(hideLoading());
       router.navigate(redirectTo);
       setShowSignInHelp(false);
+    } else {
+      dispatch(showLoading());
+      await axios
+        .post(`${API_URL}/login`, {
+          username: username,
+          password: password,
+        })
+        .then((response) => {
+          console.log(`LOGIN RESULT: ${response.data.success}`);
+          if (response.data.success) {
+            dispatch(setAuthedUser(username));
+            router.navigate(redirectTo);
+            setShowSignInHelp(false);
+          } else {
+            // Sign in failed, show help.
+            setShowSignInHelp(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(
+            "There was an error when trying to login to your profile.  Please try again."
+          );
+        })
+        .finally(() => {
+          dispatch(hideLoading());
+        });
     }
-    // Sign in failed, show help.
-    setShowSignInHelp(true);
   };
 
   const changeImpersonate = (e) => {

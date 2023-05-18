@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { useState } from "react";
-import { handleAddQuestion } from "../actions/shared";
-import { _saveQuestion } from "../utils/_DATA";
+import { API_URL, handleAddQuestion } from "../actions/shared";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const CreateQuestion = ({ dispatch, authedUser }) => {
   const [firstOption, setFirstOption] = useState("");
@@ -14,12 +14,14 @@ const CreateQuestion = ({ dispatch, authedUser }) => {
     e.preventDefault();
     dispatch(showLoading());
 
-    return _saveQuestion({
-      optionOneText: firstOption,
-      optionTwoText: secondOption,
-      author: authedUser,
-    })
-      .then((formattedQuestion) => {
+    return axios
+      .post(`${API_URL}/questions`, {
+        username: authedUser,
+        optionOne: firstOption,
+        optionTwo: secondOption,
+      })
+      .then((response) => {
+        const formattedQuestion = response.data.question;
         dispatch(handleAddQuestion(formattedQuestion));
         setFirstOption("");
         setSecondOption("");

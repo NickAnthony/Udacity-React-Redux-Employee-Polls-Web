@@ -145,19 +145,7 @@ function generateUID() {
   );
 }
 
-export function _getUsers() {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...users }), 1000);
-  });
-}
-
-export function _getQuestions() {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...questions }), 1000);
-  });
-}
-
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+export function formatQuestion({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
     timestamp: Date.now(),

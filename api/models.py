@@ -1,21 +1,62 @@
+import datetime
 import os
-from sqlalchemy import Column, String, Integer, BigInteger, ForeignKey, create_engine
-from sqlalchemy.orm import relationship
-from flask import Flask
+import random
+import string
+
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-import datetime
-import string
-import random
+from sqlalchemy import BigInteger, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+
+from api.test_data import existingQuestions, existingUsers
 
 database_path = os.environ.get("DATABASE_URL")
 if not database_path:
-    database_path = "postgresql://localhost:5432/employeepolls"
-
+    database_path = "postgresql://localhost:5432/employee_polls"
 db = SQLAlchemy()
 
 
-def setup_db(app, database_path=database_path):
+def insertInitialData():
+    """insertInitialData()
+
+    Adds some initial data to the database so when you load the
+    app you can see it's functionality already.  We check each insertion
+    to avoid duplication.
+    """
+    for id, user in existingUsers.items():
+        # Check we don't duplicate
+        if User.query.filter(User.id == id).one_or_none():
+            continue
+        new_user = User(id, user["password"], user["name"], user["avatar_url"])
+        new_user.insert()
+    for id, question in existingQuestions.items():
+        # Check we don't duplicate
+        if Question.query.filter(Question.id == id).one_or_none():
+            continue
+        new_question = Question(
+            question["optionOne"]["text"],
+            question["optionTwo"]["text"],
+            id,
+            question["timestamp"],
+        )
+        author = db.session.get(User, question["author"])
+        new_question.author = author
+        new_question.insert()
+        for user_id in question["optionOne"]["votes"]:
+            user = db.session.get(User, user_id)
+            newAnswer = Answer(1)
+            newAnswer.question = new_question
+            newAnswer.user = user
+            newAnswer.insert()
+        for user_id in question["optionTwo"]["votes"]:
+            user = db.session.get(User, user_id)
+            newAnswer = Answer(2)
+            newAnswer.question = new_question
+            newAnswer.user = user
+            newAnswer.insert()
+
+
+def setup_db(app, database_path=database_path, insert_initial_data=True):
     """setup_db(app)
 
     Binds a flask application and a SQLAlchemy service
@@ -28,6 +69,8 @@ def setup_db(app, database_path=database_path):
         db.create_all()
     app.app_context().push()
     migrate = Migrate(app, db)
+    if insert_initial_data:
+        insertInitialData()
 
 
 def generate_random_id():

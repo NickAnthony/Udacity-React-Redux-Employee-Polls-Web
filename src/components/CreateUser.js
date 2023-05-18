@@ -7,6 +7,8 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import PasswordInput from "./PasswordInput";
 import UserAvatarPicture from "./UserAvatarPicture";
+import axios from "axios";
+import { API_URL } from "../actions/shared";
 
 const CreateUser = ({ dispatch, users, router }) => {
   const [username, setUsername] = useState("");
@@ -51,10 +53,24 @@ const CreateUser = ({ dispatch, users, router }) => {
       setAvailableUserName(false);
       return;
     }
-    dispatch(createUser(username, password, name, avatarURL));
-    dispatch(setAuthedUser(username));
-    router.navigate("/");
-    return;
+    return axios
+      .post(`${API_URL}/users`, {
+        username: username,
+        password: password,
+        name: name,
+        avatar_url: avatarURL,
+      })
+      .then(() => {
+        dispatch(createUser(username, password, name, avatarURL));
+        dispatch(setAuthedUser(username));
+        router.navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(
+          "There was an error when trying to save your profile.  Please try again."
+        );
+      });
   };
 
   return (

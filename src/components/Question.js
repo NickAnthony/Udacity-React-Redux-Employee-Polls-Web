@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import { withRouter } from "../utils/helpers";
-import { handleUserVote } from "../actions/shared";
+import { handleRemoveUserVote, handleUserVote } from "../actions/shared";
 import AnsweredOption from "./AnsweredOption";
 import UserAvatarPicture from "./UserAvatarPicture";
 import VoteOption from "./VoteOption";
 import ErrorPage from "./ErrorPage";
+import axios from "axios";
+import { API_URL } from "../actions/shared";
 
 const Question = ({
   dispatch,
@@ -20,6 +22,25 @@ const Question = ({
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(handleUserVote(question.id, authedUserDetails.id, e.target.value));
+    return axios
+      .post(`${API_URL}/answers`, {
+        username: authedUserDetails.id,
+        question_id: question.id,
+        vote: e.target.value,
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(
+          "There was an error when trying to save your vote.  Please try again."
+        );
+        dispatch(
+          handleRemoveUserVote(
+            question.id,
+            authedUserDetails.id,
+            e.target.value
+          )
+        );
+      });
   };
 
   // Throw a 404 when question does not exist

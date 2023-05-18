@@ -19,7 +19,7 @@ class EmployeePollsTestCase(unittest.TestCase):
         self.client = self.app.test_client
         self.database_name = "employee_polls_test"
         self.database_path = "postgresql://localhost:5432/{}".format(self.database_name)
-        setup_db(self.app, self.database_path)
+        setup_db(self.app, self.database_path, insert_initial_data=False)
         self.insertInitialData()
 
     def tearDown(self):
@@ -100,34 +100,149 @@ class EmployeePollsTestCase(unittest.TestCase):
         self.assertEqual(data["id"], user_id)
 
     # ------------------------------------------------------------
-    # Testing '/questions' GET endpoint
+    # Testing '/users' PAST endpoint
     # ------------------------------------------------------------
-    def test_basic_get_questions_succeeds(self):
-        res = self.client().get("/questions")
+    def test_update_user_succeeds(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "brainblast"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": "spark334",
+                "name": "James Neutron",
+            },
+        )
         data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
 
+        new_name = "Jimmy Neutron"
+        new_avatar_url = "https://upload.wikimedia.org/wikipedia/en/7/76/Jimmy_Neutron_Boy_Genius_film.jpg"
+        res = self.client().patch(
+            "/users",
+            json={
+                "username": user_id,
+                "name": new_name,
+                "avatar_url": new_avatar_url,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+
+        res = self.client().get("/users")
+        data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertTrue(data["questions"])
+        self.assertTrue(data["users"])
 
-        for id, question in data["questions"].items():
-            existingQuestion = existingQuestions[id]
-            self.assertEqual(existingQuestion["author"], question["author"])
-            self.assertEqual(existingQuestion["timestamp"], question["timestamp"])
-            self.assertEqual(
-                existingQuestion["optionOne"]["votes"].sort(),
-                question["optionOne"]["votes"].sort(),
-            )
-            self.assertEqual(
-                existingQuestion["optionOne"]["text"], question["optionOne"]["text"]
-            )
-            self.assertEqual(
-                existingQuestion["optionTwo"]["votes"].sort(),
-                question["optionTwo"]["votes"].sort(),
-            )
-            self.assertEqual(
-                existingQuestion["optionOne"]["text"], question["optionOne"]["text"]
-            )
+        for id, user in data["users"].items():
+            if id == user_id:
+                self.assertEqual(user["name"], new_name)
+                self.assertEqual(user["avatar_url"], new_avatar_url)
+
+    def test_update_user_password_succeeds(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "roadrunning"
+        old_password = "beepbeep"
+        new_password = "beepbeepbeep"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": old_password,
+                "name": "Road Runner",
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
+
+        res = self.client().patch(
+            "/users",
+            json={
+                "username": user_id,
+                "old_password": old_password,
+                "new_password": new_password,
+            },
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+
+    def test_update_user_throws_401_for_bad_password(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "bugsbunny"
+        old_password = "carrots"
+        new_password = "whatsupdoc"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": old_password,
+                "name": "Bugs Bunny",
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
+
+        res = self.client().patch(
+            "/users",
+            json={
+                "username": user_id,
+                "old_password": "badpassword",
+                "new_password": new_password,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data["success"], False)
+        self.assertEqual(data["message"], "Incorrect password")
+
+    def test_update_user_throws_400_for_wrong_arguments(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "wileecoyote"
+        old_password = "roadrunner"
+        new_password = "dynamite"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": old_password,
+                "name": "Wile E Coyote",
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
+
+        res = self.client().patch(
+            "/users",
+            json={
+                "username": user_id,
+                "old_password": old_password,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data["success"], False)
+        self.assertEqual(data["message"], "Bad request")
+
+        res = self.client().patch(
+            "/users",
+            json={
+                "username": user_id,
+                "new_password": new_password,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data["success"], False)
+        self.assertEqual(data["message"], "Bad request")
 
     # ------------------------------------------------------------
     # Testing '/questions' POST endpoint

@@ -11,8 +11,9 @@ def create_app(test_config=None):
     # CORS Headers
     @app.after_request
     def after_request(response):
+        # response.headers.add("Access-Control-Allow-Origin", "*")
         response.headers.add(
-            "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
+            "Access-Control-Allow-Headers", "Content-Type,Authorization"
         )
         response.headers.add(
             "Access-Control-Allow-Methods", "GET,PATCH,POST,DELETE,OPTIONS"
@@ -44,8 +45,13 @@ def create_app(test_config=None):
         for user in users:
             formatted_users[user.id] = {
                 "id": user.id,
+                # TODO: Remove the password.  Added for ease to adjust password logic.
+                "password": "123456",
                 "name": user.name,
-                "avatar_url": user.avatar_url,
+                # Note - because we use snake case in the backend, but we use
+                # camel case in the front end, we have to translate between the
+                # cases in API calls.
+                "avatarURL": user.avatar_url,
                 "answers": {},
                 "questions": [question.id for question in user.questions],
             }
@@ -113,7 +119,7 @@ def create_app(test_config=None):
     def login():
         if not request.get_json():
             abort(400)
-        id = request.get_json().get("id", None)
+        id = request.get_json().get("username", None)
         password = request.get_json().get("password", None)
 
         # Verify that the appropriate parameters were passed.
@@ -128,7 +134,62 @@ def create_app(test_config=None):
         if user.password == password:
             return jsonify({"success": True})
         else:
-            return jsonify({"success": False})
+            abort(401)
+
+    """
+    PATCH /users
+        - Updates an existing user.  Requires knowing the exiting
+          password.
+        - Permissions required: None
+        - Request Arguments:
+            - 'username': A unique string.
+            - 'password': Existing password for the user.
+            - 'previous_password': Previous password for the user.
+            - 'name': A string that is the full name of the user.
+            - 'avatar_url': A url pointing to a photo of the user.
+        - Returns:
+          - Status code 200 and json {"success": True}
+    """
+
+    @app.route("/users", methods=["PATCH"])
+    def update_user():
+        if not request.get_json():
+            abort(400)
+        id = request.get_json().get("username", None)
+        old_password = request.get_json().get("old_password", None)
+        new_password = request.get_json().get("new_password", None)
+        name = request.get_json().get("name", None)
+        avatar_url = request.get_json().get("avatar_url", None)
+
+        # Verify that the appropriate parameters were passed.
+        if not id:
+            abort(400)
+
+        # Can't change a password without both the old and new.
+        if (old_password and not new_password) or (not old_password and new_password):
+            abort(400)
+
+        # Get the existing details for the parameters not passed
+        user = User.query.filter(User.id == id).one_or_none()
+        if not user:
+            abort(404)
+        name = name if name != None else user.name
+        avatar_url = avatar_url if avatar_url != None else user.avatar_url
+
+        # Confirm old password is correct
+        if old_password and (old_password != user.password):
+            abort(401)
+
+        try:
+            user.name = name
+            user.avatar_url = avatar_url
+            if new_password:
+                user.password = new_password
+            user.update()
+            return jsonify({"success": True})
+        except Exception as e:
+            print(sys.exc_info())
+            abort(422)
 
     # ----------------------------------------------------------------------- #
     # Questions endpoints/routes.
@@ -285,6 +346,13 @@ def create_app(test_config=None):
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({"success": False, "error": 400, "message": "Bad request"}), 400
+
+    @app.errorhandler(401)
+    def bad_password(error):
+        return (
+            jsonify({"success": False, "error": 401, "message": "Incorrect password"}),
+            401,
+        )
 
     @app.errorhandler(404)
     def not_found(error):

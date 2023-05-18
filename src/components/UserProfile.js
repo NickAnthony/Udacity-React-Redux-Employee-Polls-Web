@@ -3,21 +3,23 @@ import { useState } from "react";
 import QuestionsTabLayout from "./QuestionsTabLayout";
 import { updateUser } from "../actions/users";
 import UserAvatarPicture from "./UserAvatarPicture";
+import ChangePasswordPopUp from "./ChangePasswordPopUp";
 
 const UserProfile = ({ dispatch, authedUserDetails }) => {
   // Set to true to display information, without being able to edit it (edit is disabled)
   const [displayModeEnabled, setDisplayModeEnabled] = useState(true);
   const [avatarURL, setAvatarURL] = useState(authedUserDetails.avatarURL);
   const [name, setName] = useState(authedUserDetails.name);
-  const [password, setPassword] = useState(authedUserDetails.password);
+  const [password, setPassword] = useState("");
+  const [isChangePasswordModelOpen, setIsChangePasswordModelOpen] =
+    useState(false);
 
   const invalidName = name === "" ? true : false;
-  const invalidPass = password.length < 6 ? true : false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (invalidName || invalidPass) {
-      alert("Please fix the errors before saving your changes.");
+    if (invalidName) {
+      alert("Your name cannot be empty.");
       return;
     }
     dispatch(updateUser(authedUserDetails.id, password, name, avatarURL));
@@ -37,14 +39,14 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
     setName(e.target.value);
   };
 
-  const handleUpdatePassword = (e) => {
-    e.preventDefault();
-    setPassword(e.target.value);
-  };
-
   const handleUpdateAvatarURL = (e) => {
     e.preventDefault();
     setAvatarURL(e.target.value);
+  };
+
+  // Manages the change password model logic
+  const onCloseChangePasswordModel = () => {
+    setIsChangePasswordModelOpen(false);
   };
 
   return (
@@ -60,6 +62,10 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
         </div>
 
         <div className="container-column">
+          <ChangePasswordPopUp
+            isOpen={isChangePasswordModelOpen}
+            onClose={onCloseChangePasswordModel}
+          />
           <form onSubmit={handleSubmit}>
             <p>Full Name</p>
             <input
@@ -80,18 +86,6 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
               disabled={true}
               data-testid="username-input"
             />
-            <p>Password</p>
-            <input
-              type="password"
-              value={password}
-              disabled={displayModeEnabled}
-              onChange={handleUpdatePassword}
-              data-testid="password-input"
-            />
-            <br />
-            <span style={{ color: "#E85A4F", fontSize: "small" }}>
-              {invalidPass && "Password must be at least 6 characters"}
-            </span>
             <p>Profile Photo Link</p>
             <input
               type="text"
@@ -103,15 +97,28 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
             <br />
             <br />
             {displayModeEnabled && (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setDisplayModeEnabled(false);
-                }}
-                data-testid="display-mode-enable-button"
-              >
-                Edit Profile
-              </button>
+              <div className="button-layout">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDisplayModeEnabled(false);
+                  }}
+                  data-testid="display-mode-enable-button"
+                >
+                  Edit Profile
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log("CHANGE PASSWORD BUTTON2");
+                    setIsChangePasswordModelOpen(true);
+                  }}
+                  data-testid="change-password-button"
+                >
+                  Change Password
+                </button>
+              </div>
             )}
             {!displayModeEnabled && (
               <div className="flex-space-between">
