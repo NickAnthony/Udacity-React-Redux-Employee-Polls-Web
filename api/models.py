@@ -17,6 +17,10 @@ load_dotenv()
 database_path = os.environ.get("DATABASE_URL")
 if not database_path:
     database_path = os.getenv("DATABASE_URL")
+# sqlalchemy cannot use postgres, but heroku makes it hard to change environment variables.
+# let's do this for now.
+# TODO: Figure out a proper way to solve this on the heroku side.
+database_path = database_path.replace("postgres", "postgresql")
 db = SQLAlchemy()
 
 
