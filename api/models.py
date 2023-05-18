@@ -10,9 +10,13 @@ from sqlalchemy.orm import relationship
 
 from api.test_data import existingQuestions, existingUsers
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 database_path = os.environ.get("DATABASE_URL")
 if not database_path:
-    database_path = "postgresql://localhost:5432/employee_polls"
+    database_path = os.getenv("DATABASE_URL")
 db = SQLAlchemy()
 
 
