@@ -10,7 +10,6 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
   const [displayModeEnabled, setDisplayModeEnabled] = useState(true);
   const [avatarURL, setAvatarURL] = useState(authedUserDetails.avatarURL);
   const [name, setName] = useState(authedUserDetails.name);
-  const [password, setPassword] = useState("");
   const [isChangePasswordModelOpen, setIsChangePasswordModelOpen] =
     useState(false);
 
@@ -22,7 +21,7 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
       alert("Your name cannot be empty.");
       return;
     }
-    dispatch(updateUser(authedUserDetails.id, password, name, avatarURL));
+    dispatch(updateUser(authedUserDetails.id, name, avatarURL));
     setDisplayModeEnabled(true);
   };
 
@@ -31,7 +30,6 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
     setDisplayModeEnabled(true);
     setAvatarURL(authedUserDetails.avatarURL);
     setName(authedUserDetails.name);
-    setPassword(authedUserDetails.password);
   };
 
   const handleUpdateName = (e) => {
@@ -111,7 +109,6 @@ const UserProfile = ({ dispatch, authedUserDetails }) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log("CHANGE PASSWORD BUTTON2");
                     setIsChangePasswordModelOpen(true);
                   }}
                   data-testid="change-password-button"

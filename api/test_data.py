@@ -4,6 +4,7 @@ existingUsers = {
         "password": "password123",
         "name": "Sarah Edo",
         "avatar_url": None,
+        "impersonable": False,
         "answers": {
             "8xf0y6ziyjabvozdd253nd": "optionOne",
             "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -17,6 +18,7 @@ existingUsers = {
         "password": "abc321",
         "name": "Tyler McGinnis",
         "avatar_url": None,
+        "impersonable": False,
         "answers": {
             "vthrdm985a262al8qx3do": "optionOne",
             "xj352vofupe1dqz9emx13r": "optionTwo",
@@ -28,6 +30,7 @@ existingUsers = {
         "password": "xyz123",
         "name": "Mike Tsamis",
         "avatar_url": None,
+        "impersonable": False,
         "answers": {
             "xj352vofupe1dqz9emx13r": "optionOne",
             "vthrdm985a262al8qx3do": "optionTwo",
@@ -40,6 +43,7 @@ existingUsers = {
         "password": "pass246",
         "name": "Zenobia Oshikanlu",
         "avatar_url": None,
+        "impersonable": False,
         "answers": {
             "xj352vofupe1dqz9emx13r": "optionOne",
         },
@@ -50,6 +54,7 @@ existingUsers = {
         "password": "secret",
         "name": "Nick Anthony",
         "avatar_url": "https://i.redd.it/ofmlty7h86fa1.jpg",
+        "impersonable": False,
         "answers": {
             "xj352vofupe1dqz9emx13r": "optionTwo",
         },

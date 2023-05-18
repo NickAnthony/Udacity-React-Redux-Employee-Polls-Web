@@ -17,6 +17,8 @@ const CreateUser = ({ dispatch, users, router }) => {
   const [name, setName] = useState("");
   const [availableUserName, setAvailableUserName] = useState(true);
 
+  let isPasswordValid = password.length >= 6 ? true : false;
+
   const handleChangeUsername = (e) => {
     // Updates the name and double checks the username does
     // not yet exit.
@@ -53,6 +55,10 @@ const CreateUser = ({ dispatch, users, router }) => {
       setAvailableUserName(false);
       return;
     }
+    // Don't allow an API call with an invalid password
+    if (password.length < 6) {
+      return;
+    }
     return axios
       .post(`${API_URL}/users`, {
         username: username,
@@ -61,8 +67,12 @@ const CreateUser = ({ dispatch, users, router }) => {
         avatar_url: avatarURL,
       })
       .then(() => {
-        dispatch(createUser(username, password, name, avatarURL));
+        dispatch(createUser(username, name, avatarURL));
         dispatch(setAuthedUser(username));
+        setUsername("");
+        setPassword("");
+        setAvatarURL("");
+        setName("");
         router.navigate("/");
       })
       .catch((error) => {
@@ -99,6 +109,20 @@ const CreateUser = ({ dispatch, users, router }) => {
             password={password}
             handleChangePassword={handleChangePassword}
           />
+          {isPasswordValid && password !== "" && (
+            <i>
+              <AiOutlineCheckCircle color="#72BD7A" />
+            </i>
+          )}
+          {!isPasswordValid && password !== "" && (
+            <i>
+              <RxCross2 color="#e85a4f" />
+              <span style={{ color: "#e85a4f" }}>
+                {" "}
+                Password must be at least 6 characters
+              </span>
+            </i>
+          )}
           <p>Profile Picture URL</p>
           <input
             type="text"

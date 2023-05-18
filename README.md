@@ -28,7 +28,6 @@ Users include:
 | Attribute | Type   | Description                                                                                                                                                                                                    |
 | --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id        | String | The user’s unique identifier                                                                                                                                                                                   |
-| password  | String | The user’s password in order to log in the application                                                                                                                                                         |
 | name      | String | The user’s first name and last name                                                                                                                                                                            |
 | avatarURL | String | The path to the image file                                                                                                                                                                                     |
 | questions | Array  | A list of ids of the polling questions this user created                                                                                                                                                       |
@@ -220,7 +219,6 @@ Displays a users profile information:
 
 - Name
 - Username
-- Password
 - AvatarURL
 - Questions they asked
 

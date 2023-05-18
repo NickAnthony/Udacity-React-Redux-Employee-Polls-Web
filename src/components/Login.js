@@ -7,11 +7,20 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 import PasswordInput from "./PasswordInput";
 import axios from "axios";
 import { API_URL } from "../actions/shared";
+import { RxCross2 } from "react-icons/rx";
 
-const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
+const Login = ({
+  dispatch,
+  users,
+  userIds,
+  impersonableUsers,
+  router,
+  redirectTo,
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignInHelp, setShowSignInHelp] = useState(false);
+  const [showImpersonateHelp, setShowImpersonateHelp] = useState(false);
   const [impersonate, setImpersonate] = useState(false);
 
   // Logout by default when visiting this page
@@ -38,21 +47,39 @@ const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
     // Username exists, let's check the password.
     // Note that we won't check an empty password!  This is according
     // to project specs.
+    dispatch(showLoading());
     if (impersonate) {
-      dispatch(showLoading());
-      dispatch(setAuthedUser(username));
-      dispatch(hideLoading());
-      router.navigate(redirectTo);
-      setShowSignInHelp(false);
+      await axios
+        .post(`${API_URL}/login`, {
+          username: username,
+          impersonate: true,
+        })
+        .then((response) => {
+          if (response.data.success) {
+            dispatch(setAuthedUser(username));
+            router.navigate(redirectTo);
+            setShowImpersonateHelp(false);
+          } else {
+            // Sign in failed, show help.
+            setShowImpersonateHelp(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(
+            "There was an error when trying to login to your profile.  Please try again."
+          );
+        })
+        .finally(() => {
+          dispatch(hideLoading());
+        });
     } else {
-      dispatch(showLoading());
       await axios
         .post(`${API_URL}/login`, {
           username: username,
           password: password,
         })
         .then((response) => {
-          console.log(`LOGIN RESULT: ${response.data.success}`);
           if (response.data.success) {
             dispatch(setAuthedUser(username));
             router.navigate(redirectTo);
@@ -97,7 +124,7 @@ const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
               onChange={handleChangeUsername}
               data-testid="username-select"
             >
-              {userIds.map((userId) => (
+              {impersonableUsers.map((userId) => (
                 <option key={userId} value={userId}>
                   {userId}
                 </option>
@@ -118,6 +145,15 @@ const Login = ({ dispatch, users, userIds, router, redirectTo }) => {
                 handleChangePassword={handleChangePassword}
               />
             </Fragment>
+          )}
+          {showImpersonateHelp && (
+            <i>
+              <RxCross2 color="#e85a4f" />
+              <span style={{ color: "#e85a4f" }}>
+                {" "}
+                {username} cannot be impersonated.
+              </span>
+            </i>
           )}
           <br />
           <br />
@@ -159,9 +195,14 @@ const mapStateToProps = ({ users }, props) => {
   if (redirectTo === "/login") {
     redirectTo = "/";
   }
+  let impersonableUsers = Object.keys(users).filter(
+    (userId) => users[userId].impersonable
+  );
+
   return {
     users,
     userIds: Object.keys(users),
+    impersonableUsers,
     redirectTo: redirectTo,
   };
 };

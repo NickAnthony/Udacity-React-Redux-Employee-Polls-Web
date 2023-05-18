@@ -47,22 +47,21 @@ export function removeAnswerFromUser(questionId, userId, voteOption) {
   };
 }
 
-export function updateUser(userId, password, name, avatarURL) {
+export function updateUser(userId, name, avatarURL) {
   return {
     type: UPDATE_USER,
     userId,
-    password,
     name,
     avatarURL,
   };
 }
 
-export function createUser(userId, password, name, avatarURL) {
+export function createUser(userId, name, avatarURL) {
   return {
     type: ADD_NEW_USER,
     userId,
-    password,
     name,
     avatarURL,
+    impersonable: false,
   };
 }

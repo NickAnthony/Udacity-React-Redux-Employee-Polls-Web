@@ -75,7 +75,6 @@ export default function users(state = {}, action) {
         ...state,
         [action.userId]: {
           ...state[action.userId],
-          password: action.password,
           name: action.name,
           avatarURL: action.avatarURL,
         },
@@ -86,9 +85,9 @@ export default function users(state = {}, action) {
         ...state,
         [action.userId]: {
           id: action.userId,
-          password: action.password,
           name: action.name,
           avatarURL: action.avatarURL,
+          impersonable: false,
           answers: {},
           questions: [],
         },

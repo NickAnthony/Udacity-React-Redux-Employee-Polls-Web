@@ -5,7 +5,7 @@ import string
 
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import BigInteger, Column, ForeignKey, Integer, String
+from sqlalchemy import BigInteger, Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
 from api.test_data import existingQuestions, existingUsers
@@ -139,6 +139,7 @@ class User(db.Model, GeneralModel):
     password = Column(String, nullable=False)
     name = Column(String, nullable=False)
     avatar_url = Column(String, nullable=True)
+    impersonable = Column(Boolean, nullable=False)
 
     # One to many relationship with questions
     questions = db.relationship("Question", backref=db.backref("author", lazy="joined"))
@@ -146,11 +147,12 @@ class User(db.Model, GeneralModel):
     # Has one to many relationship with answers, with backref `user`
     answers = db.relationship("Answer", backref=db.backref("user", lazy="joined"))
 
-    def __init__(self, id, password, name, avatar_url=None):
+    def __init__(self, id, password, name, avatar_url=None, impersonable=False):
         self.id = id
         self.name = name
         self.password = password
         self.avatar_url = avatar_url
+        self.impersonable = impersonable
 
     def format(self):
         formatted_questions = [question.id for question in self.questions]
@@ -161,6 +163,7 @@ class User(db.Model, GeneralModel):
             "id": self.id,
             "name": self.name,
             "avatar_url": self.avatar_url,
+            "impersonable": self.impersonable,
             "questions": formatted_questions,
             "answers": formatted_answers,
         }

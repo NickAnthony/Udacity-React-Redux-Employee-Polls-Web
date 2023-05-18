@@ -4,6 +4,7 @@ export var users = {
     password: "password123",
     name: "Sarah Edo",
     avatarURL: null,
+    impersonable: true,
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -17,6 +18,7 @@ export var users = {
     password: "abc321",
     name: "Tyler McGinnis",
     avatarURL: null,
+    impersonable: true,
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo",
@@ -28,6 +30,7 @@ export var users = {
     password: "xyz123",
     name: "Mike Tsamis",
     avatarURL: null,
+    impersonable: true,
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
@@ -40,6 +43,7 @@ export var users = {
     password: "pass246",
     name: "Zenobia Oshikanlu",
     avatarURL: null,
+    impersonable: true,
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
     },
@@ -50,6 +54,7 @@ export var users = {
     password: "secret",
     name: "Nick Anthony",
     avatarURL: "https://i.redd.it/ofmlty7h86fa1.jpg",
+    impersonable: true,
     answers: {
       xj352vofupe1dqz9emx13r: "optionTwo",
     },

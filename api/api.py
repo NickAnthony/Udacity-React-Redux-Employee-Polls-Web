@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, jsonify, request, abort
+from flask import Flask, send_from_directory, jsonify, request, abort, redirect, url_for
 from flask_cors import CORS  # comment this on deployment
 from api.models import setup_db, User, Question, Answer, db
 import sys
@@ -7,6 +7,18 @@ import sys
 def create_app(test_config=None):
     app = Flask(__name__, static_url_path="", static_folder="../build")
     CORS(app)
+
+    # This is the list of impersonable users.
+    # This lets you login without a password.
+    # The purpose is to check out the site's functionality without
+    # having to create a login.
+    impersonable_users = [
+        "sarahedo",
+        "tylermcginnis",
+        "mtsamis",
+        "zoshikanlu",
+        "nickanthony",
+    ]
 
     # CORS Headers
     @app.after_request
@@ -45,8 +57,6 @@ def create_app(test_config=None):
         for user in users:
             formatted_users[user.id] = {
                 "id": user.id,
-                # TODO: Remove the password.  Added for ease to adjust password logic.
-                "password": "123456",
                 "name": user.name,
                 # Note - because we use snake case in the backend, but we use
                 # camel case in the front end, we have to translate between the
@@ -54,6 +64,7 @@ def create_app(test_config=None):
                 "avatarURL": user.avatar_url,
                 "answers": {},
                 "questions": [question.id for question in user.questions],
+                "impersonable": user.id in impersonable_users,
             }
             for answer in user.answers:
                 vote = "optionOne" if (answer.vote == 1) else "optionTwo"
@@ -94,6 +105,10 @@ def create_app(test_config=None):
             if user.id == id:
                 abort(404)
 
+        # Validate the password is at least 6 characters long.
+        if len(password) < 6:
+            abort(400)
+
         try:
             newUser = User(id, password, name, avatar_url)
             newUser.insert()
@@ -104,9 +119,9 @@ def create_app(test_config=None):
 
     """
     POST /login
-        - Checks a password for login.  Technically, this isn't a
-            safe way to do this, but it's free.  For a production
-            app I would recommend using OAuth.
+        - Checks a password for login.  For a real production
+            app I would recommend using OAuth with JWTs, but
+            for now, this will do and it's free.
         - Permissions required: None
         - Request Arguments:
             - 'username': A unique string.
@@ -121,10 +136,19 @@ def create_app(test_config=None):
             abort(400)
         id = request.get_json().get("username", None)
         password = request.get_json().get("password", None)
+        impersonate = request.get_json().get("impersonate", False)
 
         # Verify that the appropriate parameters were passed.
-        if not id or not password:
+        if not id:
             abort(400)
+        if not impersonate and not password:
+            abort(400)
+
+        if impersonate:
+            if id not in impersonable_users:
+                abort(401)
+            else:
+                return jsonify({"success": True})
 
         # Verify that the user exists.
         user = User.query.filter(User.id == id).one_or_none()
@@ -356,6 +380,10 @@ def create_app(test_config=None):
 
     @app.errorhandler(404)
     def not_found(error):
+        # Add a catch all so that reloads will redirect to the root, where react works.
+        # TODO: Figure out how to handle this properly (so a bookmark would work, for example)
+        if request.method == "GET":
+            return redirect("/")
         return (
             jsonify(
                 {"success": False, "error": 404, "message": "Resource was not found"}

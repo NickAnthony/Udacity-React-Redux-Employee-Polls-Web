@@ -76,7 +76,7 @@ class EmployeePollsTestCase(unittest.TestCase):
         for id, user in data["users"].items():
             existingUser = existingUsers[id]
             self.assertEqual(existingUser["answers"], user["answers"])
-            self.assertEqual(existingUser["avatar_url"], user["avatar_url"])
+            self.assertEqual(existingUser["avatar_url"], user["avatarURL"])
             self.assertEqual(existingUser["name"], user["name"])
             self.assertEqual(existingUser["questions"], user["questions"])
 
@@ -100,7 +100,7 @@ class EmployeePollsTestCase(unittest.TestCase):
         self.assertEqual(data["id"], user_id)
 
     # ------------------------------------------------------------
-    # Testing '/users' PAST endpoint
+    # Testing '/users' PATCH endpoint
     # ------------------------------------------------------------
     def test_update_user_succeeds(self):
         # Create new user to ensure we don't collide with
@@ -140,7 +140,7 @@ class EmployeePollsTestCase(unittest.TestCase):
         for id, user in data["users"].items():
             if id == user_id:
                 self.assertEqual(user["name"], new_name)
-                self.assertEqual(user["avatar_url"], new_avatar_url)
+                self.assertEqual(user["avatarURL"], new_avatar_url)
 
     def test_update_user_password_succeeds(self):
         # Create new user to ensure we don't collide with
@@ -243,6 +243,99 @@ class EmployeePollsTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(data["success"], False)
         self.assertEqual(data["message"], "Bad request")
+
+    # ------------------------------------------------------------
+    # Testing '/login' POST endpoint
+    # ------------------------------------------------------------
+    def test_basic_login_works(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "batman"
+        password = "batmobile"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": password,
+                "name": "Batman",
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
+
+        res = self.client().post(
+            "/login",
+            json={
+                "username": user_id,
+                "password": password,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue(data["success"])
+
+    def test_basic_impersonate_login_works(self):
+        res = self.client().post(
+            "/login",
+            json={
+                "username": "sarahedo",
+                "impersonate": True,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue(data["success"])
+
+    def test_invalid_impersonate_throws_401(self):
+        # Create new user to ensure we don't collide with
+        # existing answer.
+        user_id = "brucewayne"
+        password = "alfredisawesome"
+        res = self.client().post(
+            "/users",
+            json={
+                "username": user_id,
+                "password": password,
+                "name": "Bruce Wayne",
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["id"], user_id)
+
+        res = self.client().post(
+            "/login",
+            json={
+                "username": "brucewayne",
+                "impersonate": True,
+            },
+        )
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 401)
+        self.assertFalse(data["success"])
+
+    # ------------------------------------------------------------
+    # Testing '/questions' GET endpoint
+    # ------------------------------------------------------------
+    def test_basic_get_questions_succeeds(self):
+        res = self.client().get("/questions")
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["questions"])
+
+        for id, user in data["questions"].items():
+            existingQuestion = existingQuestions[id]
+            self.assertEqual(existingQuestion["author"], user["author"])
+            self.assertEqual(existingQuestion["timestamp"], user["timestamp"])
+            self.assertEqual(
+                existingQuestion["optionOne"]["text"], user["optionOne"]["text"]
+            )
+            self.assertEqual(
+                existingQuestion["optionTwo"]["text"], user["optionTwo"]["text"]
+            )
 
     # ------------------------------------------------------------
     # Testing '/questions' POST endpoint
