@@ -260,21 +260,3 @@ class Answer(db.Model, GeneralModel):
 
     def __repr__(self):
         return f"<Answer {self.question_id} {self.author_id} {self.vote}>"
-
-
-# setup_db(app)
-
-# newUser = User(id="nickanthony", password="secret",
-#                name="Nick Anthony", avatar_url="https://i.redd.it/ofmlty7h86fa1.jpg")
-
-# newQuestion = Question(optionOne="have code reviews conducted by peers",
-#                        optionTwo="have code reviews conducted by managers")
-# newQuestion.author = newUser
-
-# newAnswer = Answer(vote=1)
-# newAnswer.user = newUser
-# newAnswer.question = newQuestion
-
-# newUser.insert()
-# newQuestion.insert()
-# newAnswer.insert()
